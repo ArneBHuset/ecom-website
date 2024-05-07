@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
+import Header from "../components/header";
 
 function LandingPage() {
   return (
     <>
-      <div>
-        <header>This is my header</header>
-      </div>
+      <Header />
     </>
   );
 }
