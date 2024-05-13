@@ -41,7 +41,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
@@ -53,6 +52,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const smallMenu = {};
+
+const BigMenu = {};
+
 export default function SearchAppBar() {
   return (
     <Box>
@@ -60,8 +63,8 @@ export default function SearchAppBar() {
         <Toolbar>
           <Stack
             direction="row"
-            spacing={3}
-            sx={{ flexGrow: 2, display: { xs: "none", md: "block" } }}
+            spacing={2}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             <Button color="inherit" component={Link} to="/">
               Home
@@ -77,11 +80,15 @@ export default function SearchAppBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 2, justifyContent: "center" }}
+            sx={{
+              flexGrow: 1,
+              justifyContent: "center",
+              display: { xs: "none", sm: "block" },
+            }}
           >
             MUI
           </Typography>
-          <Search sx={{ flexGrow: 1, display: { xs: "none", md: "block" } }}>
+          <Search sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -90,6 +97,7 @@ export default function SearchAppBar() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+
           <IconButton
             size="large"
             edge="start"
@@ -98,8 +106,9 @@ export default function SearchAppBar() {
             sx={{
               display: {
                 xs: "block",
-                md: "none",
-                justifyContent: "flex - end",
+                width: "100%",
+                textAlign: "right",
+                sm: "none",
               },
             }}
           >
