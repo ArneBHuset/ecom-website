@@ -52,14 +52,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const smallMenu = {};
+// const smallMenu = {};
 
-const BigMenu = {};
+// const BigMenu = {};
 
 export default function SearchAppBar() {
   return (
     <Box>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        color="inherit"
+        sx={{ borderBottom: 1, boxShadow: "none" }}
+      >
         <Toolbar>
           <Stack
             direction="row"
@@ -86,7 +90,7 @@ export default function SearchAppBar() {
               display: { xs: "none", sm: "block" },
             }}
           >
-            MUI
+            FlashFinds
           </Typography>
           <Search sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
             <SearchIconWrapper>

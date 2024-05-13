@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Container } from "@mui/material";
 import Header from "../components/header";
+import HeroSection from "../components/hero";
 
 function LandingPage() {
   return (
     <>
-      <Header />
+      <Container>
+        <Header />
+        <HeroSection />
+      </Container>
     </>
   );
 }
