@@ -1,9 +1,13 @@
+import { Container } from "@mui/material";
+import ProductList from "../components/ProductList";
+import Header from "../components/header";
 function ProductPage() {
   return (
     <>
-      <div>
-        <h1>Product page</h1>
-      </div>
+      <Container>
+        <Header />
+        <ProductList />
+      </Container>
     </>
   );
 }

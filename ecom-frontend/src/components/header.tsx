@@ -56,7 +56,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 // const BigMenu = {};
 
-export default function SearchAppBar() {
+export default function Header() {
   return (
     <Box>
       <AppBar
