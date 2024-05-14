@@ -1,7 +1,5 @@
 import { Container } from "@mui/material";
-import Header from "../components/header";
-import HeroSection from "../components/hero";
-import ApiCall from "../api/api-call";
+import Header from "../components/common/Header";
 
 function LandingPage() {
   ApiCall();
