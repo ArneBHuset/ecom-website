@@ -17,6 +17,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import TagIcon from "@mui/icons-material/Tag";
 
 import ApiCall from "../../api/api-call";
+import { Box } from "@mui/material";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -38,6 +39,7 @@ export default function ProductItem() {
   const [jsonData, setData] = useState(null);
 
   useEffect(() => {
+    console.log("useeffect called");
     const loadData = async () => {
       const apiData = await ApiCall();
       setData(apiData);
@@ -45,73 +47,81 @@ export default function ProductItem() {
     loadData();
   }, []);
 
-  console.log(jsonData);
+  //   console.log(jsonData);
 
+  //
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Product example"
-        subheader="Prise of product"
-        // subheader="Reduced price of product"
-      />
-      <CardMedia
-        component="img"
-        height="194"
-        image="https://static.noroff.dev/api/online-shop/1-perfume-white.jpg"
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <AddShoppingCartIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <StarIcon />
-        </IconButton>
-        <Typography>This is the rating</Typography>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <IconButton aria-label="add to favorites">
-        <TagIcon />
-      </IconButton>
-      <Typography>Tags and such</Typography>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              RI
-            </Avatar>
-          }
-          <Typography paragraph>Username of reviewer</Typography>
-          <Typography paragraph>This is the reviewers description</Typography>
-          <IconButton aria-label="share">
-            <StarIcon />
-          </IconButton>
-          <Typography>This is the rating</Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+    <Box>
+      {jsonData &&
+        jsonData.data.map((product) => (
+          <Card sx={{ maxWidth: 345 }}>
+            <CardHeader
+              action={
+                <IconButton aria-label="settings">
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              title={product.title}
+              //   subheader={`${product.discountedPrice < product.price {
+
+              //   }}`}
+            />
+
+            <CardMedia
+              component="img"
+              height="194"
+              image={product.image.url}
+              alt={product.image.alt}
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                {product.description}
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+              <IconButton aria-label="add to cart">
+                <AddShoppingCartIcon />
+              </IconButton>
+              <IconButton aria-label="rating">
+                <StarIcon />
+              </IconButton>
+              <Typography>{`${product.rating}/5`}</Typography>
+              <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </ExpandMore>
+            </CardActions>
+            {/* <IconButton aria-label="add to favorites">
+              <TagIcon />
+            </IconButton> */}
+            <Typography>{`#${product.tags.join(" #")}`}</Typography>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  RI
+                </Avatar>
+                {product.reviews.map((review) => (
+                  <>
+                    <Typography paragraph>{review.username}</Typography>
+                    <Typography paragraph>{review.description}</Typography>
+                    <IconButton aria-label="share">
+                      <StarIcon />
+                    </IconButton>
+                    <Typography>This is the rating: {review.rating}</Typography>
+                  </>
+                ))}
+              </CardContent>
+            </Collapse>
+          </Card>
+        ))}
+    </Box>
   );
 }
