@@ -1,22 +1,19 @@
 import { styled } from "@mui/material/styles";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import TagIcon from "@mui/icons-material/Tag";
 
-import ApiCall from "../../api/api-call";
+// import ApiCall from "../../api/api-call";
 import { Box } from "@mui/material";
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -34,30 +31,38 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function ProductItem() {
+/**
+ * Returns the average of two numbers.
+ *
+ * @remarks
+ * This method is part of the {@link core-library#Statistics | Statistics subsystem}.
+ *
+ * @param x - The first input number
+ * @param y - The second input number
+ * @returns The arithmetic mean of `x` and `y`
+ *
+ * @beta
+ */
+
+export default function ProductItem({ product }: any) {
   const [expanded, setExpanded] = useState(false);
-  const [jsonData, setData] = useState(null);
 
-  useEffect(() => {
-    console.log("useeffect called");
-    const loadData = async () => {
-      const apiData = await ApiCall();
-      setData(apiData);
-    };
-    loadData();
-  }, []);
-
-  //   console.log(jsonData);
-
-  //
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
+  {
+    console.log("This is the product", product);
+  }
+
   return (
     <Box>
-      {jsonData &&
-        jsonData.data.map((product) => (
+      {product &&
+        product.data.map((product: any) => (
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               action={
@@ -105,18 +110,15 @@ export default function ProductItem() {
             <Typography>{`#${product.tags.join(" #")}`}</Typography>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  RI
-                </Avatar>
-                {product.reviews.map((review) => (
-                  <>
+                {product.reviews.map((review: any) => (
+                  <Box>
                     <Typography paragraph>{review.username}</Typography>
                     <Typography paragraph>{review.description}</Typography>
                     <IconButton aria-label="share">
                       <StarIcon />
                     </IconButton>
                     <Typography>This is the rating: {review.rating}</Typography>
-                  </>
+                  </Box>
                 ))}
               </CardContent>
             </Collapse>
