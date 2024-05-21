@@ -1,9 +1,14 @@
+import { Container } from "@mui/material";
+import Header from "../components/common/Header";
+import CartCheckout from "../components/layout/Checkout";
+
 function CartPage() {
   return (
     <>
-      <div>
-        <h1>Cart Page</h1>
-      </div>
+      <Container>
+        <Header />
+        <CartCheckout />
+      </Container>
     </>
   );
 }

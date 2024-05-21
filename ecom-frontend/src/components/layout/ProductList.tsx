@@ -2,8 +2,8 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import ApiCall from "../../api/api-call";
 import ProductItem from "../common/ProductItem";
+import ApiCall from "../../api/api-call";
 import { useState, useEffect } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -14,73 +14,32 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-/**
- * Returns the average of two numbers.
- *
- * @remarks
- * This method is part of the {@link core-library#Statistics | Statistics subsystem}.
- *
- * @param x - The first input number
- * @param y - The second input number
- * @returns The arithmetic mean of `x` and `y`
- *
- * @beta
- */
-
-interface Image {
-  url: string;
-  alt: string;
-}
-
-interface Review {
-  id: string;
-  username: string;
-  rating: number;
-  description: string;
-}
-
-interface Product {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  discountedPrice: number;
-  image: Image;
-  rating: number;
-  tags: string[];
-  reviews: Review[];
-}
-
-interface ApiResponse {
-  data: Product[];
-}
-
 export default function ProductList() {
-  const [products, setProducts] = useState<ApiResponse | null>(null);
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("your-api-url");
-      const json: ApiResponse = await response.json();
-      setProducts(json);
+      const apiData = await ApiCall();
+      setProducts(apiData.data);
     };
-
     fetchData();
   }, []);
 
-  if (!products) return <div>Loading...</div>;
+  if (!products) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div>
-      {products.data.map((product) => (
-        <div key={product.id}>
-          <h2>
-            {product.title} - ${product.price}
-          </h2>
-          <p>{product.description}</p>
-          {/* other product details */}
-        </div>
-      ))}
-    </div>
+    <Box sx={{ width: "100%" }}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        {products.map((product) => (
+          <Grid item xs={12} sm={6} md={4} key={product.id}>
+            <Item>
+              <ProductItem product={product} />
+            </Item>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }

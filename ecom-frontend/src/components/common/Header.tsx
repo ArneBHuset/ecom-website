@@ -79,6 +79,9 @@ export default function Header() {
             <Button color="inherit" component={Link} to="/contact">
               Contact us!
             </Button>
+            <Button color="inherit" component={Link} to="/cart">
+              Cart
+            </Button>
           </Stack>
           <Typography
             variant="h6"
