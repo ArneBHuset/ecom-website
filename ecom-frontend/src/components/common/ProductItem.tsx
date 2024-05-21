@@ -16,6 +16,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import TagIcon from "@mui/icons-material/Tag";
 import { Box } from "@mui/material";
+import AddCart from "../../storage/AddCart";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -62,9 +63,20 @@ export default function ProductItem({ product }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to cart">
+          <IconButton
+            aria-label="add to cart"
+            onClick={() =>
+              AddCart({
+                id: product.id,
+                title: product.title,
+                price: product.discountedPrice,
+                imageURL: product.image.url,
+              })
+            }
+          >
             <AddShoppingCartIcon />
           </IconButton>
+
           <IconButton aria-label="rating">
             <StarIcon />
           </IconButton>
