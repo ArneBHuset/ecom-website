@@ -8,14 +8,11 @@ export default async function ApiCall() {
         "Content-Type": "application/json",
       },
     };
-
     const response = await fetch(URL, request);
     const data = await response.json();
     return data;
   } catch (error) {
     console.error(error);
     throw new Error("Error while fetching data");
-  } finally {
-    // Other logick?
   }
 }

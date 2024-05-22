@@ -5,13 +5,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Button } from "@mui/material";
-// import Button from "@mui/material/Button";
+import { Box, Button, ImageList, colors } from "@mui/material";
+import { TerminateBtn } from "../ui/buttons/TerminateBtn";
+import { useCart } from "../ui/cart/CartContext";
 
 export default function CartList() {
-  const existingCart = sessionStorage.getItem("cartData");
-  let cartData = existingCart ? JSON.parse(existingCart) : [];
-  console.log(cartData);
+  const { cart, resetCart } = useCart();
+  console.log(cart);
 
   return (
     <Box>
@@ -20,26 +20,38 @@ export default function CartList() {
           <TableHead>
             <TableRow>
               <TableCell>Image</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
+              <TableCell align="left">Calories</TableCell>
+              <TableCell align="left">Price</TableCell>
+              <TableCell align="center">Qty</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {cartData.map((row) => (
+            {cart.map((row) => (
               <TableRow
                 key={row.title}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
+                <TableCell align="left">
+                  <img
+                    src={`${row.imageURL}`}
+                    width={80}
+                    height={80}
+                    style={{ borderRadius: "50%" }}
+                  ></img>
+                </TableCell>
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.title}
                 </TableCell>
                 <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.imageURL}</TableCell>
+                <TableCell align="right">{row.index}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Box sx={{ display: "flex", justifyContent: "right", marginTop: 4 }}>
+        <TerminateBtn onClick={resetCart}>Clear cart</TerminateBtn>
+      </Box>
     </Box>
   );
 }

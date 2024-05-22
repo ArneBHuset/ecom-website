@@ -17,6 +17,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import TagIcon from "@mui/icons-material/Tag";
 import { Box } from "@mui/material";
 import AddCart from "../../storage/AddCart";
+import { useCart } from "../ui/cart/CartContext";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -35,6 +36,16 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function ProductItem({ product }) {
   const [expanded, setExpanded] = useState(false);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.discountedPrice,
+      imageURL: product.image.url,
+    });
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -63,17 +74,7 @@ export default function ProductItem({ product }) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton
-            aria-label="add to cart"
-            onClick={() =>
-              AddCart({
-                id: product.id,
-                title: product.title,
-                price: product.discountedPrice,
-                imageURL: product.image.url,
-              })
-            }
-          >
+          <IconButton aria-label="add to cart" onClick={handleAddToCart}>
             <AddShoppingCartIcon />
           </IconButton>
 
