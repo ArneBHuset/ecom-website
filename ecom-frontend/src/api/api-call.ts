@@ -1,14 +1,10 @@
-const URL = "https://v2.api.noroff.dev/online-shop";
+import { URL } from "./api-variables";
+import { content } from "./api-variables";
 
-export default async function ApiCall() {
+export default async function ApiCall(id = "") {
   try {
-    const request = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await fetch(URL, request);
+    const response = await fetch(`${URL}/${id}`, content);
+    console.log(response);
     const data = await response.json();
     return data;
   } catch (error) {

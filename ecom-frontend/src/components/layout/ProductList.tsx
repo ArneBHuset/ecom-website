@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import ProductItem from "../common/ProductItem";
 import ApiCall from "../../api/api-call";
+import getProducts from "../../api/api-filter";
 import { useState, useEffect } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
