@@ -1,16 +1,14 @@
 import { Container } from "@mui/material";
 import Header from "../components/common/Header";
-import HeroSection from "../components/layout/Hero";
+import ViewProduct from "../components/common/ViewProduct";
 
-function LandingPage() {
+export default function SingleProductPage() {
   return (
     <>
       <Container>
         <Header />
-        <HeroSection />
+        <ViewProduct />
       </Container>
     </>
   );
 }
-
-export default LandingPage;
