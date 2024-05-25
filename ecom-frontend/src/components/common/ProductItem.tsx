@@ -12,6 +12,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box } from "@mui/material";
 import { useCart } from "../ui/cart/CartContext";
 import { useNavigate } from "react-router-dom";
+import Icon from "@mui/material/Icon";
 
 export default function ProductItem({ product }) {
   const { addToCart } = useCart();
@@ -58,9 +59,9 @@ export default function ProductItem({ product }) {
             <AddShoppingCartIcon />
           </IconButton>
 
-          <IconButton aria-label="rating">
+          <Icon aria-label="rating">
             <StarIcon />
-          </IconButton>
+          </Icon>
           <Typography>{`${product.rating}/5`}</Typography>
           <Typography>{`#${product.tags.join(" #")}`}</Typography>
         </CardActions>

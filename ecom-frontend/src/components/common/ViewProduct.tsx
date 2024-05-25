@@ -5,20 +5,30 @@ import ApiCall from "../../api/api-call";
 import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Paper";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useCart } from "../ui/cart/CartContext";
 
 export default function ViewProduct() {
-  const [products, setProducts] = useState(null);
+  const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const productIdNonNull = productId!;
+  const { addToCart } = useCart();
 
-  // console.log(productId);
-  // console.log(products);
+  const handleAddToCart = (event) => {
+    event.stopPropagation();
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.discountedPrice,
+      imageURL: product.image.url,
+    });
+  };
 
   useEffect(() => {
     if (productId) {
       const fetchData = async () => {
         const apiData = await ApiCall(productId.replace(":", ""));
-        setProducts(apiData.data);
+        setProduct(apiData.data);
       };
       fetchData();
     } else {
@@ -26,7 +36,7 @@ export default function ViewProduct() {
     }
   }, [productId]);
 
-  if (!products) {
+  if (!product) {
     return <div>Loading...</div>;
   }
 
@@ -36,8 +46,8 @@ export default function ViewProduct() {
         <Grid item xs={12} sm={6}>
           <Item>
             <img
-              src={`${products.image.url} `}
-              alt={`${products.image.alt} || Image for ${products.title}`}
+              src={`${product.image.url} `}
+              alt={`${product.image.alt} || Image for ${product.title}`}
               width={500}
               height={500}
             ></img>
@@ -45,14 +55,17 @@ export default function ViewProduct() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Item>
-            <h1>{products.title}</h1>
-            <p>{products.description}</p>
-            <p>{products.price}</p>
-            <p>{products.discountedPrice}</p>
-            <p>{products.rating}</p>
-            <p>{`#${products.tags.join(" #")}`}</p>
+            <h1>{product.title}</h1>
+            <IconButton aria-label="add to cart" onClick={handleAddToCart}>
+              <AddShoppingCartIcon />
+            </IconButton>
+            <p>{product.description}</p>
+            <p>{product.price}</p>
+            <p>{product.discountedPrice}</p>
+            <p>{product.rating}</p>
+            <p>{`#${product.tags.join(" #")}`}</p>
             <Box>
-              {products.reviews.map((review) => (
+              {product.reviews.map((review) => (
                 <Box key={review.id}>
                   <Typography paragraph>{review.username}</Typography>
                   <Typography paragraph>{review.description}</Typography>
