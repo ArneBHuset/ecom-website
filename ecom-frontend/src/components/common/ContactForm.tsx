@@ -1,56 +1,54 @@
+import { useForm, Controller, set } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Box, TextField, Button, Typography, FormControl } from "@mui/material";
 import { useState } from "react";
-import { TextField, Button, Box, Typography, FormControl } from "@mui/material";
+import Icon from "@mui/material/Icon";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+/**
+ * For validating form inputs
+ * Defines validation criteria for fullName, subject, email, and message fields.
+ */
+const schema = yup.object().shape({
+  fullName: yup
+    .string()
+    .required("Full name is required")
+    .min(3, "Full name must be at least 3 characters"),
+  subject: yup
+    .string()
+    .required("Subject is required")
+    .min(3, "Subject must be at least 3 characters"),
+  email: yup.string().required("Email is required").email("Email is not valid"),
+  message: yup
+    .string()
+    .required("Message is required")
+    .min(3, "Message must be at least 3 characters"),
+});
 
 export default function ContactForm() {
-  const [values, setValues] = useState({
-    fullName: "",
-    subject: "",
-    email: "",
-    message: "",
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
   });
-  const [errors, setErrors] = useState({});
+
+  const [isSubmitted, setIsSubmitted] = useState(false); // State to track form submission success
 
   /**
-   * Handles input changes forom the form inputs
-   * @param prop - The property of the form to update.
-   * @returns A function that updates the state for `prop` based on the event's input value.
+   * If the form is valid, log the values and reset the form.
+   * @param data - Object containing form data with structure matching the form's input fields.
    */
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  /**
-   * Handles form submission and prevents defualt form submit behavior
-   * validates the form before proceeding.
-   * @param event - The form submission event.
-   */
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (validate()) {
-      console.log("These are the form values", values);
-      formSuccess();
-    }
-  };
-
-  const formSuccess = () =>
-    `Thank you for your message. We will get back to you soon.`;
-
-  const validate = () => {
-    let tempErrors = {};
-    tempErrors.fullName =
-      values.fullName.length > 2
-        ? ""
-        : "Full name must be at least 3 characters.";
-    tempErrors.subject =
-      values.subject.length > 2 ? "" : "Subject must be at least 3 characters.";
-    tempErrors.email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)
-      ? ""
-      : "Email is not valid.";
-    tempErrors.message =
-      values.message.length > 2 ? "" : "Message must be at least 3 characters.";
-    setErrors(tempErrors);
-
-    return Object.values(tempErrors).every((x) => x === "");
+  const onSubmit = (data) => {
+    console.log("These are the form values", data);
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      reset();
+    }, 4000);
   };
 
   return (
@@ -58,69 +56,59 @@ export default function ContactForm() {
       component="form"
       noValidate
       autoComplete="off"
-      onSubmit={handleSubmit}
-      width={{ xs: 1, sm: 0.7, md: 0.4 }}
-      marginLeft={"auto"}
-      marginRight={"auto"}
-      marginTop={10}
-      sx={{}}
+      onSubmit={handleSubmit(onSubmit)}
+      sx={{
+        mt: 10,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: { xs: 1, sm: 0.7, md: 0.4 },
+        mx: "auto",
+      }}
     >
-      <Typography variant="h5" component="h2" textAlign={"center"}>
+      <Typography variant="h5" component="h2" textAlign="center">
         Contact Us
       </Typography>
-      <FormControl margin="normal" fullWidth>
-        <TextField
-          label="Full Name"
-          variant="outlined"
-          value={values.fullName}
-          onChange={handleChange("fullName")}
-          error={!!errors.fullName}
-          helperText={errors.fullName}
-        />
-      </FormControl>
-      <FormControl margin="normal" fullWidth>
-        <TextField
-          label="Subject"
-          variant="outlined"
-          value={values.subject}
-          onChange={handleChange("subject")}
-          error={!!errors.subject}
-          helperText={errors.subject}
-        />
-      </FormControl>
-      <FormControl margin="normal" fullWidth>
-        <TextField
-          label="Email"
-          variant="outlined"
-          type="email"
-          value={values.email}
-          onChange={handleChange("email")}
-          error={!!errors.email}
-          helperText={errors.email}
-        />
-      </FormControl>
-      <FormControl margin="normal" fullWidth>
-        <TextField
-          label="Message"
-          variant="outlined"
-          multiline
-          rows={4}
-          value={values.message}
-          onChange={handleChange("message")}
-          error={!!errors.message}
-          helperText={errors.message}
-        />
-      </FormControl>
-      <Typography>{formSuccess}</Typography>
+      {["fullName", "subject", "email", "message"].map((field, index) => (
+        <FormControl key={index} margin="normal" fullWidth>
+          <Controller
+            name={field}
+            control={control}
+            defaultValue=""
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                label={
+                  field.charAt(0).toUpperCase() +
+                  field.slice(1).replace(/([a-z])([A-Z])/g, "$1 $2")
+                }
+                variant="outlined"
+                value={value}
+                onChange={onChange}
+                error={!!errors[field]}
+                helperText={errors[field]?.message}
+                multiline={field === "message"}
+                rows={field === "message" ? 4 : 1}
+              />
+            )}
+          />
+        </FormControl>
+      ))}
+      {isSubmitted && (
+        <Box
+          sx={{ display: "flex", alignItems: "center", color: "green", mt: 2 }}
+        >
+          <Icon>
+            <CheckCircleIcon />
+          </Icon>
+          <Typography variant="subtitle1" sx={{ ml: 1 }}>
+            Thank you for getting in touch!
+          </Typography>
+        </Box>
+      )}
       <Button
         type="submit"
         variant="contained"
-        sx={{
-          mt: 3,
-          display: "block",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
+        sx={{ mt: 3, display: "block", mx: "auto" }}
       >
         Send Message
       </Button>
