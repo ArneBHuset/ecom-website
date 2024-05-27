@@ -5,9 +5,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, Button, ImageList, colors } from "@mui/material";
+import { Box } from "@mui/material";
 import { TerminateBtn } from "../ui/buttons/TerminateBtn";
-import { useCart } from "../ui/cart/CartContext";
+import { useCart } from "../ui/cart/useCart";
 
 export default function CartList() {
   const { cart, resetCart } = useCart();
@@ -43,7 +43,7 @@ export default function CartList() {
                   {row.title}
                 </TableCell>
                 <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.index}</TableCell>
+                <TableCell align="right">{row.quantity}</TableCell>
               </TableRow>
             ))}
           </TableBody>

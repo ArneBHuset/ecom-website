@@ -7,7 +7,7 @@ interface CartItem {
 
 export default function AddCart(productInCart: CartItem) {
   const existingCart = sessionStorage.getItem("cartData");
-  let cartData = existingCart ? JSON.parse(existingCart) : [];
+  const cartData = existingCart ? JSON.parse(existingCart) : [];
 
   const index = cartData.findIndex(
     (item: CartItem) => item.id === productInCart.id

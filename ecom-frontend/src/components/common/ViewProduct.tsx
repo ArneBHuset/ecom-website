@@ -8,20 +8,26 @@ import Item from "@mui/material/Paper";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useCart } from "../ui/cart/CartContext";
 
+import { Product } from "../../types/ProductInterface";
+// import { Review } from "../../types/ProductInterface";
+
 export default function ViewProduct() {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product | null>(null);
+
   const { productId } = useParams();
-  const productIdNonNull = productId!;
   const { addToCart } = useCart();
 
-  const handleAddToCart = (event) => {
+  const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    addToCart({
-      id: product.id,
-      title: product.title,
-      price: product.discountedPrice,
-      imageURL: product.image.url,
-    });
+    if (product) {
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.discountedPrice,
+        imageURL: product.image.url,
+        quantity: 1,
+      });
+    }
   };
 
   useEffect(() => {
@@ -65,7 +71,7 @@ export default function ViewProduct() {
             <p>{product.rating}</p>
             <p>{`#${product.tags.join(" #")}`}</p>
             <Box>
-              {product.reviews.map((review) => (
+              {product?.reviews.map((review) => (
                 <Box key={review.id}>
                   <Typography paragraph>{review.username}</Typography>
                   <Typography paragraph>{review.description}</Typography>

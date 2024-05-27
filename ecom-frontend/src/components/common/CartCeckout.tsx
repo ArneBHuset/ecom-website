@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { ProceedBtn } from "../ui/buttons/ProceedBtn";
-import { useCart } from "../ui/cart/CartContext";
+import { useCart } from "../ui/cart/useCart";
 
 export default function Checkout() {
   const { cart } = useCart();

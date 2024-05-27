@@ -1,30 +1,67 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useState, ReactNode } from "react";
 
-// Create the context
-const CartContext = createContext();
+/**
+ * Interface representing a single item in the shopping cart.
+ */
+interface CartItem {
+  id: string;
+  title: string;
+  price: number;
+  quantity: number;
+  imageURL: string;
+}
 
-// Export a hook to use the cart context
-export const useCart = () => useContext(CartContext);
+/**
+ * Type definition for the shopping cart context's state and actions.
+ */
+interface CartContextType {
+  cart: CartItem[];
+  addToCart: (item: CartItem) => void;
+  resetCart: () => void;
+}
 
-// Provider component that wraps your app and provides cart state
-export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+/**
+ * Creating the shopping cart context with an undefined initial value to ensure type safety.
+ */
+export const CartContext = createContext<CartContextType | undefined>(
+  undefined
+);
 
-  const addToCart = (item) => {
+/**
+ * Props for the CartProvider component.
+ */
+interface CartProviderProps {
+  children: ReactNode;
+}
+
+/**
+ * Provides a context provider for the shopping cart, allowing nested components
+ * to access and manipulate the shopping cart state.
+ */
+export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+  const [cart, setCart] = useState<CartItem[]>([]); // State to hold the cart items
+
+  /**
+   * Adds an item to the cart or updates its quantity if it already exists.
+   * @param item - Item to be added to the cart.
+   */
+  const addToCart = (item: CartItem) => {
     setCart((currentCart) => {
-      // Check if the item is already in the cart
       const itemExists = currentCart.find((product) => product.id === item.id);
       if (itemExists) {
-        // If it exists, replace it with the new item (to update quantity or other properties)
         return currentCart.map((product) =>
-          product.id === item.id ? item : product
+          product.id === item.id
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
         );
       }
-      // If it doesn't exist, add the new item to the cart
-      return [...currentCart, item];
+      return [...currentCart, { ...item, quantity: 1 }];
     });
   };
 
+  /**
+   * Resets the cart to an empty array, effectively clearing all items in the cart.
+   */
   const resetCart = () => {
     setCart([]);
   };

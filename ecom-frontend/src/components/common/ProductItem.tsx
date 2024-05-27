@@ -1,10 +1,9 @@
-import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
@@ -13,18 +12,20 @@ import { Box } from "@mui/material";
 import { useCart } from "../ui/cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import Icon from "@mui/material/Icon";
+import { Product } from "../../types/ProductInterface";
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
-  const handleAddToCart = (event) => {
+  const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     addToCart({
       id: product.id,
       title: product.title,
       price: product.discountedPrice,
       imageURL: product.image.url,
+      quantity: 1,
     });
   };
 

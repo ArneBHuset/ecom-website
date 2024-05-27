@@ -1,4 +1,4 @@
-import { useForm, Controller, set } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Box, TextField, Button, Typography, FormControl } from "@mui/material";
@@ -38,11 +38,17 @@ export default function ContactForm() {
 
   const [isSubmitted, setIsSubmitted] = useState(false); // State to track form submission success
 
+  interface FormData {
+    fullName: string;
+    subject: string;
+    email: string;
+    message: string;
+  }
   /**
    * If the form is valid, log the values and reset the form.
    * @param data - Object containing form data with structure matching the form's input fields.
    */
-  const onSubmit = (data) => {
+  const onSubmit = (data: FormData) => {
     console.log("These are the form values", data);
     setIsSubmitted(true);
     setTimeout(() => {
@@ -50,6 +56,13 @@ export default function ContactForm() {
       reset();
     }, 4000);
   };
+
+  const fieldNames: Array<keyof FormData> = [
+    "fullName",
+    "subject",
+    "email",
+    "message",
+  ];
 
   return (
     <Box
@@ -69,7 +82,7 @@ export default function ContactForm() {
       <Typography variant="h5" component="h2" textAlign="center">
         Contact Us
       </Typography>
-      {["fullName", "subject", "email", "message"].map((field, index) => (
+      {fieldNames.map((field, index) => (
         <FormControl key={index} margin="normal" fullWidth>
           <Controller
             name={field}

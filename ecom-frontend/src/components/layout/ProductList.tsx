@@ -1,22 +1,13 @@
-import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import ProductItem from "../common/ProductItem";
 import ApiCall from "../../api/api-call";
-import getProducts from "../../api/api-filter";
 import { useState, useEffect } from "react";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import { Product } from "../../types/ProductInterface";
+import { Item } from "../ui/other/Item";
 
 export default function ProductList() {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +24,7 @@ export default function ProductList() {
   return (
     <Box sx={{ width: "100%" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        {products.map((product) => (
+        {products.map((product: Product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Item>
               <ProductItem product={product} />
