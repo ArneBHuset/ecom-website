@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Paper";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useCart } from "../ui/cart/CartContext";
+import { useCart } from "../ui/cart/useCart";
 
 import { Product } from "../../types/ProductInterface";
 // import { Review } from "../../types/ProductInterface";

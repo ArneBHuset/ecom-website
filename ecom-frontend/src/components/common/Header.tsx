@@ -5,12 +5,12 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import { SearchIconWrapper } from "../ui/icons/search";
-import { headerSearch as Search } from "../ui/search/HeaderSearch";
-import { StyledInputBase } from "../ui/search/InputBase";
+// import { SearchIconWrapper } from "../ui/icons/search";
+// import { headerSearch as Search } from "../ui/search/HeaderSearch";
+// import { StyledInputBase } from "../ui/search/InputBase";
 // import searchProduct from "../../logick/search/sarch";
 
 // const smallMenu = {};
@@ -55,20 +55,20 @@ export default function Header() {
           >
             FlashFinds
           </Typography>
-          <Search sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
+          {/* <Search sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-            // placeholder="Search..."
-            // inputProps={{ "aria-label": "search" }}
-            // value={searchString}
-            // onChange={(e) => setSearchString(e.target.value)}
-            // onKeyUp={(e) =>
-            //   searchProduct(e.target.value, hatches, setSearchResult)
-            // }
+            placeholder="Search..."
+            inputProps={{ "aria-label": "search" }}
+            value={searchString}
+            onChange={(e) => setSearchString(e.target.value)}
+            onKeyUp={(e) =>
+              searchProduct(e.target.value, hatches, setSearchResult)
+            }
             />
-          </Search>
+          </Search> */}
 
           <IconButton
             size="large"

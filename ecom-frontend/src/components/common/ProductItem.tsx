@@ -9,7 +9,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box } from "@mui/material";
-import { useCart } from "../ui/cart/CartContext";
+import { useCart } from "../ui/cart/useCart";
 import { useNavigate } from "react-router-dom";
 import Icon from "@mui/material/Icon";
 import { Product } from "../../types/ProductInterface";
