@@ -39,7 +39,7 @@ interface CartProviderProps {
  * to access and manipulate the shopping cart state.
  */
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [cart, setCart] = useState<CartItem[]>([]); // State to hold the cart items
+  const [cart, setCart] = useState<CartItem[]>([]);
 
   /**
    * Adds an item to the cart or updates its quantity if it already exists.
@@ -47,18 +47,21 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
    */
   const addToCart = (item: CartItem) => {
     setCart((currentCart) => {
-      const itemExists = currentCart.find((product) => product.id === item.id);
-      if (itemExists) {
-        return currentCart.map((product) =>
-          product.id === item.id
-            ? { ...product, quantity: product.quantity + 1 }
-            : product
-        );
+      const existingItemIndex = currentCart.findIndex(
+        (product) => product.id === item.id
+      );
+      if (existingItemIndex !== -1) {
+        const updatedCart = [...currentCart];
+        updatedCart[existingItemIndex] = {
+          ...currentCart[existingItemIndex],
+          quantity: currentCart[existingItemIndex].quantity + 1,
+        };
+        return updatedCart;
+      } else {
+        return [...currentCart, { ...item, quantity: 1 }];
       }
-      return [...currentCart, { ...item, quantity: 1 }];
     });
   };
-
   /**
    * Resets the cart to an empty array, effectively clearing all items in the cart.
    */

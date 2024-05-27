@@ -5,6 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
+import HeaderCart from "../ui/buttons/HeaderCart";
 // import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
@@ -38,9 +39,6 @@ export default function Header() {
             </Button>
             <Button color="inherit" component={Link} to="/contact">
               Contact us!
-            </Button>
-            <Button color="inherit" component={Link} to="/cart">
-              Cart
             </Button>
           </Stack>
           <Typography
@@ -85,6 +83,9 @@ export default function Header() {
             }}
           >
             <MenuIcon />
+          </IconButton>
+          <IconButton color="inherit" component={Link} to="/cart">
+            <HeaderCart />
           </IconButton>
         </Toolbar>
       </AppBar>
