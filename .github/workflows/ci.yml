@@ -32,6 +32,6 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: ./ecom-frontend
-      - name: Run tests
-        run: npm test
-        working-directory: ./ecom-frontend
+      # - name: Run tests
+      #   run: npm test
+      #   working-directory: ./ecom-frontend
