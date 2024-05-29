@@ -5,12 +5,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { TerminateBtn } from "../ui/buttons/TerminateBtn";
 import { useCart } from "../ui/cart/useCart";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function CartList() {
-  const { cart, resetCart } = useCart();
+  const { cart, resetCart, addToCart, removeFromCart } = useCart();
   console.log(cart);
 
   return (
@@ -26,24 +29,32 @@ export default function CartList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cart.map((row) => (
+            {cart.map((item) => (
               <TableRow
-                key={row.title}
+                key={item.title}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="left">
                   <img
-                    src={`${row.imageURL}`}
+                    src={`${item.imageURL}`}
                     width={80}
                     height={80}
                     style={{ borderRadius: "50%" }}
                   ></img>
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {row.title}
+                  {item.title}
                 </TableCell>
-                <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.quantity}</TableCell>
+                <TableCell align="right">{item.price}</TableCell>
+                <TableCell align="right">
+                  <IconButton onClick={() => removeFromCart(item)}>
+                    {item.quantity > 1 ? <RemoveIcon /> : <DeleteIcon />}
+                  </IconButton>
+                  {item.quantity}
+                  <IconButton onClick={() => addToCart(item)}>
+                    <AddIcon />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

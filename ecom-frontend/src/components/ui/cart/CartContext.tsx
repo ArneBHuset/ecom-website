@@ -18,6 +18,7 @@ interface CartContextType {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
   resetCart: () => void;
+  removeFromCart: (item: CartItem) => void;
 }
 
 /**
@@ -62,6 +63,33 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       }
     });
   };
+
+  /**
+   * Removes an item from the cart or decreases its quantity if it already exists.
+   * @param item - Item to be removed from the cart.
+   */
+  const removeFromCart = (item: CartItem) => {
+    setCart((currentCart) => {
+      const existingItemIndex = currentCart.findIndex(
+        (product) => product.id === item.id
+      );
+      if (existingItemIndex !== -1) {
+        const newQuantity = currentCart[existingItemIndex].quantity - 1;
+        if (newQuantity > 0) {
+          return currentCart.map((product) =>
+            product.id === item.id
+              ? { ...product, quantity: newQuantity }
+              : product
+          );
+        } else {
+          // Remove the item from the cart if the quantity reaches zero
+          return currentCart.filter((product) => product.id !== item.id);
+        }
+      }
+      return currentCart;
+    });
+  };
+
   /**
    * Resets the cart to an empty array, effectively clearing all items in the cart.
    */
@@ -70,7 +98,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, resetCart }}>
+    <CartContext.Provider
+      value={{ cart, removeFromCart, addToCart, resetCart }}
+    >
       {children}
     </CartContext.Provider>
   );
