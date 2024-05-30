@@ -4,7 +4,7 @@ import { content } from "./api-variables";
 export default async function ApiCall(id = "") {
   try {
     const response = await fetch(`${URL}/${id}`, content);
-    console.log(response);
+    // console.log(response);
     const data = await response.json();
     return data;
   } catch (error) {

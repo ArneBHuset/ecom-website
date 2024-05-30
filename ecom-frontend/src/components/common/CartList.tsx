@@ -14,7 +14,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function CartList() {
   const { cart, resetCart, addToCart, removeFromCart } = useCart();
-  console.log(cart);
 
   return (
     <Box>

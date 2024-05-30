@@ -1,8 +1,7 @@
-import { alpha, styled } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
 
-export const headerSearch = styled("div")(({ theme }) => ({
+export const Search = styled("div")(({ theme }) => ({
   position: "relative",
-  boder: "1px solid #e0e0e0",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
