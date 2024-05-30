@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
 import Header from "../components/common/Header";
 import ViewProduct from "../components/common/ViewProduct";
+import Footer from "../components/common/Footer";
 
 export default function SingleProductPage() {
   return (
@@ -8,6 +9,7 @@ export default function SingleProductPage() {
       <Container>
         <Header />
         <ViewProduct />
+        <Footer />
       </Container>
     </>
   );
