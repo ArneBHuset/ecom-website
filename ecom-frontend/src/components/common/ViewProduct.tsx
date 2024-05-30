@@ -66,8 +66,13 @@ export default function ViewProduct() {
               <AddShoppingCartIcon />
             </IconButton>
             <p>{product.description}</p>
-            <p>{product.price}</p>
-            <p>{product.discountedPrice}</p>
+            <p className="discount-slash">
+              {product.price === product.discountedPrice ? null : product.price}
+            </p>
+            <Typography>
+              {product.discountedPrice} save{" "}
+              {product.price - product.discountedPrice}
+            </Typography>
             <p>{product.rating}</p>
             <p>{`#${product.tags.join(" #")}`}</p>
             <Box>
