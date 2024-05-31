@@ -1,6 +1,6 @@
 {
   "name": "ecom-website",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "eCOM website for Noroff JS-framework course, focusing on React and TypeScript",
   "main": "index.js",
   "scripts": {
