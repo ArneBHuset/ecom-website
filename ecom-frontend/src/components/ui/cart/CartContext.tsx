@@ -1,15 +1,5 @@
 import React, { createContext, useState, ReactNode } from "react";
-
-/**
- * Interface representing a single item in the shopping cart.
- */
-interface CartItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-  imageURL: string;
-}
+import { CartItem } from "../../../types/CartInterface";
 
 /**
  * Type definition for the shopping cart context's state and actions.

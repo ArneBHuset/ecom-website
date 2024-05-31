@@ -2,3 +2,22 @@
   text-decoration: line-through;
   color: #999;
 }
+
+.full-height {
+  height: 100%;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable,
+  .printable * {
+    visibility: visible;
+  }
+  .printable {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

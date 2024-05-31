@@ -70,8 +70,10 @@ export default function ViewProduct() {
               {product.price === product.discountedPrice ? null : product.price}
             </p>
             <Typography>
-              {product.discountedPrice} save{" "}
-              {product.price - product.discountedPrice}
+              {product.discountedPrice}$
+              {product.price - product.discountedPrice > 0
+                ? ` save ${product.price - product.discountedPrice}$!`
+                : null}
             </Typography>
             <p>{product.rating}</p>
             <p>{`#${product.tags.join(" #")}`}</p>
