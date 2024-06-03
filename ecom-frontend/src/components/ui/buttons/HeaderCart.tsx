@@ -1,5 +1,5 @@
 import { IconButton, Typography } from "@mui/material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { useCart } from "../cart/useCart";
 import { red } from "@mui/material/colors";
 
@@ -10,7 +10,7 @@ export default function HeaderCart() {
   return (
     <>
       <IconButton aria-label="cart">
-        <AddShoppingCartIcon />
+        <ShoppingCartCheckoutIcon />
         <Typography
           color={red}
           sx={{

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Product } from "../../types/ProductInterface";
 import { Item } from "../ui/other/Item";
 import SearchField from "../common/SearchField";
+import ProductHeroDisplay from "../common/ProductHeroDisplay";
 
 export default function ProductList() {
   const [products, setProducts] = useState<Product[] | null>(null);
@@ -25,7 +26,14 @@ export default function ProductList() {
   return (
     <Box sx={{ width: "100%" }}>
       <SearchField products={products} />
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <ProductHeroDisplay products={products} />
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={1}
+        marginLeft={"auto"}
+        marginRight={"auto"}
+      >
         {products.map((product: Product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>
             <Item>

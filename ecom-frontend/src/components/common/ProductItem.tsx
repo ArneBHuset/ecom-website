@@ -35,37 +35,33 @@ export default function ProductItem({ product }: { product: Product }) {
 
   return (
     <Box>
-      <Card sx={{ maxWidth: 345 }} onClick={handleCardClick}>
+      <Card sx={{ maxWidth: 345, minHeight: 400 }} onClick={handleCardClick}>
         <CardHeader
+          title={product.title}
+          sx={{ textAlign: "center", textTransform: "uppercase" }}
           action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
+            <IconButton aria-label="add to cart" onClick={handleAddToCart}>
+              <AddShoppingCartIcon />
             </IconButton>
           }
-          title={product.title}
         />
         <CardMedia
           component="img"
           height="194"
           image={product.image.url}
-          alt={product.image.alt}
+          alt={product.image.alt || `Image for ${product.title}`}
         />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
+        <CardContent sx={{ display: { xs: "none", sm: "block" } }}>
+          <Typography paragraph color="text.secondary">
             {product.description}
           </Typography>
+          <Box display={"flex"} alignItems={"center"} gap={1}>
+            <Icon aria-label="rating">
+              <StarIcon />
+            </Icon>
+            <Typography>{`${product.rating}/5`}</Typography>
+          </Box>
         </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to cart" onClick={handleAddToCart}>
-            <AddShoppingCartIcon />
-          </IconButton>
-
-          <Icon aria-label="rating">
-            <StarIcon />
-          </Icon>
-          <Typography>{`${product.rating}/5`}</Typography>
-          <Typography>{`#${product.tags.join(" #")}`}</Typography>
-        </CardActions>
       </Card>
     </Box>
   );

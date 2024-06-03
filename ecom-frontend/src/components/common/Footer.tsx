@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 
 export default function Footer() {
   return (
-    <Box component="footer">
+    <Box component="footer" marginTop={15}>
       <Grid container spacing={5}>
         <Grid item xs={12} sm={4}>
           <Typography variant="h6" color="text.primary" gutterBottom>

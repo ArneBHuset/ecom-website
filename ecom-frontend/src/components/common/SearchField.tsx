@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import { SearchIconWrapper } from "../ui/icons/search";
-import { Search } from "../ui/search/Search";
 import { StyledInputBase } from "../ui/search/InputBase";
 import { Product } from "../../types/ProductInterface";
 import List from "@mui/material/List";
@@ -10,6 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Search } from "../ui/search/Search";
 
 interface SearchFieldProps {
   products: Product[];
