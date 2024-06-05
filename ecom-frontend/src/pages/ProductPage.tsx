@@ -1,8 +1,9 @@
-import ProductList from "../components/layout/ProductList";
+import { Box } from "@mui/material";
+import LandingPage from "../components/layout/LandingPage";
 function ProductPage() {
   return (
     <>
-      <ProductList />
+      <LandingPage />
     </>
   );
 }

@@ -1,98 +1,200 @@
-import { styled } from "@mui/material/styles";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { Stack } from "@mui/material";
+import { CircularProgress, Stack, Typography } from "@mui/material";
 import { Item } from "../ui/other/Item";
 import { Product } from "../../types/ProductInterface";
-import { useState, useEffect } from "react";
 
 interface SearchFieldProps {
   products: Product[];
 }
 
-export default function ProductHeroDisplay(productData: SearchFieldProps) {
-  console.log("Data in hero", productData);
-  const [products, setProducts] = useState<Product[] | null>(null);
+export default function ProductHeroDisplay({ products }: SearchFieldProps) {
+  const navigate = useNavigate();
+
+  // We will display the first product for demonstration
+  const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
+
+  const randomNumber = () => {
+    let count = 0;
+    products.forEach(() => {
+      count += 1;
+    });
+    const randomIndex = Math.floor(Math.random() * count);
+    console.log(randomIndex);
+    return randomIndex;
+  };
 
   useEffect(() => {
-    productData.products.map((product: Product) => {
-      setProducts(product);
-    });
-  });
+    if (products.length > 0) {
+      setFeaturedProduct(products[randomNumber()]);
+    }
+  }, [products]);
 
-  console.log("Products in hero", products);
+  // Navigate to product details page
+  const handleNavigate = () => {
+    if (featuredProduct) {
+      navigate(`/Singleproduct/${featuredProduct.id}`);
+    }
+  };
+
+  if (!featuredProduct) {
+    return (
+      <>
+        <CircularProgress />
+      </>
+    );
+  }
+  //   sx={{ backgroundColor: "red" }}
 
   return (
     <Grid container>
-      <Grid item xs={6} md={5}>
-        <Grid container>
-          <Grid
-            item
-            xs={12}
-            md={12}
-            margin={"auto"}
-            justifyContent={"center"}
-            sx={{
-              display: "flexbox",
-              justifyContent: "center",
-            }}
-          >
-            <Item>
-              <Box
-                border={1}
-                borderRadius={40}
-                height={400}
-                width={300}
-                margin="auto"
-              >
-                <img src={data.image}></img>
-              </Box>
-            </Item>
-            <Item
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Stack direction="row" spacing={4}>
-                <Box border={1} borderRadius={100} width={100} height={100}>
-                  Item1
-                </Box>
-                <Box border={1} borderRadius={100} width={100} height={100}>
-                  Item2
-                </Box>
-                <Box border={1} borderRadius={100} width={100} height={100}>
-                  Item3
-                </Box>
-              </Stack>
-            </Item>
-          </Grid>
-        </Grid>
+      <Grid item sm={6} height={250} sx={{ background: "red" }} zIndex={100}>
+        <Box
+          className="hero-products-hover"
+          onClick={handleNavigate}
+          border={1}
+          borderRadius={40}
+          height={400}
+          width={300}
+          margin="auto"
+          sx={{
+            backgroundImage: `url(${featuredProduct.image.url})`,
+            backgroundSize: "cover",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            textShadow: "1px 1px 3px black",
+            cursor: "pointer",
+          }}
+        >
+          <Typography variant="h5">{featuredProduct.title}</Typography>
+        </Box>
       </Grid>
-      <Grid item xs={12} md={7}>
-        <Grid container>
-          <Grid item xs={12} md={12}>
-            <Item>
-              <Box
-                border={1}
-                borderRadius={40}
-                height={400}
-                width={300}
-                margin="auto"
-              >
-                {" Inserted data"}
-              </Box>
-            </Item>
-            <Item sx={{ textAlign: "left" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam
-            </Item>
-          </Grid>
-        </Grid>
+      <Grid
+        item
+        height={250}
+        zIndex={0}
+        sm={6}
+        sx={{
+          background: "red",
+          display: { xs: "none", md: "block" },
+        }}
+      >
+        <Box
+          className="hero-products-hover-up"
+          onClick={handleNavigate}
+          border={1}
+          borderRadius={40}
+          height={420}
+          width={400}
+          margin="auto"
+          sx={{
+            backgroundImage: `url(${featuredProduct.image.url})`,
+            backgroundSize: "cover",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+            textShadow: "1px 1px 3px black",
+            cursor: "pointer",
+          }}
+        >
+          <Typography variant="h5">{featuredProduct.title}</Typography>
+        </Box>
+      </Grid>
+      <Grid item sm={6} height={350} sx={{ background: "blue" }} zIndex={50}>
+        <Stack
+          direction="row"
+          spacing={2}
+          marginTop={25}
+          justifyContent={"center"}
+        >
+          <Box
+            className="hero-products-hover"
+            onClick={handleNavigate}
+            border={1}
+            borderRadius={40}
+            height={100}
+            width={100}
+            margin="auto"
+            sx={{
+              backgroundImage: `url(${featuredProduct.image.url})`,
+              backgroundSize: "cover",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+              textShadow: "1px 1px 3px black",
+              cursor: "pointer",
+            }}
+          ></Box>
+          <Box
+            className="hero-products-hover"
+            onClick={handleNavigate}
+            border={1}
+            borderRadius={40}
+            height={100}
+            width={100}
+            margin="auto"
+            sx={{
+              backgroundImage: `url(${featuredProduct.image.url})`,
+              backgroundSize: "cover",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+              textShadow: "1px 1px 3px black",
+              cursor: "pointer",
+            }}
+          ></Box>
+          <Box
+            className="hero-products-hover"
+            onClick={handleNavigate}
+            border={1}
+            borderRadius={40}
+            height={100}
+            width={100}
+            margin="auto"
+            sx={{
+              backgroundImage: `url(${featuredProduct.image.url})`,
+              backgroundSize: "cover",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+              textShadow: "1px 1px 3px black",
+              cursor: "pointer",
+            }}
+          ></Box>
+        </Stack>
+      </Grid>
+      <Grid item sm={6} height={350} sx={{ background: "blue" }} zIndex={50}>
+        <Item
+          sx={{
+            textAlign: "left",
+            background: "blue",
+            marginLeft: "-12%",
+            paddingRight: 10,
+          }}
+        >
+          <Typography variant="h4" marginTop={4}>
+            Welcome to FlashFinds
+          </Typography>
+          <Typography paragraph color={"white"}>
+            Welcome to FlashFinds your ultimate online destination for
+            discovering incredible deals on must-have products! Explore a wide
+            range of items that combine quality, variety, and unbeatable prices,
+            all at your fingertips.
+          </Typography>
+        </Item>
       </Grid>
     </Grid>
   );

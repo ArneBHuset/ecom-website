@@ -18,7 +18,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     [theme.breakpoints.up("sm")]: {
       width: "24ch",
       "&:focus, &:hover": {
-        width: "30ch",
+        width: "36ch",
         boxShadow: `0 0 1px ${theme.palette.primary.main}`,
       },
     },

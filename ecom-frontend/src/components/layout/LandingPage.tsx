@@ -7,8 +7,9 @@ import { Product } from "../../types/ProductInterface";
 import { Item } from "../ui/other/Item";
 import SearchField from "../common/SearchField";
 import ProductHeroDisplay from "../common/ProductHeroDisplay";
+import { CircularProgress } from "@mui/material";
 
-export default function ProductList() {
+export default function LandingPage() {
   const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
@@ -20,7 +21,11 @@ export default function ProductList() {
   }, []);
 
   if (!products) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <CircularProgress />
+      </>
+    );
   }
 
   return (
@@ -33,6 +38,7 @@ export default function ProductList() {
         columnSpacing={1}
         marginLeft={"auto"}
         marginRight={"auto"}
+        marginTop={10}
       >
         {products.map((product: Product) => (
           <Grid item xs={12} sm={6} md={4} key={product.id}>

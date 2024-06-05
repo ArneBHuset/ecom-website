@@ -39,3 +39,34 @@
   height: 100%;
   object-fit: cover;
 }
+
+.product-hero-slice {
+  clip-path: polygon(0 0, 100% 0, 100% 65%, 0 65%);
+}
+
+.hero-products-hover:hover {
+  transition: transform 0.3s;
+  transform: scale(1.05);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.hero-products-hover-up {
+  transition: transform 0.3s ease-out;
+  transform: translateY(0); /* Starts at normal position */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  &:hover {
+    transform: translateY(-30px); /* Moves up by 5px */
+  }
+}
+
+.hero-bg-color {
+  width: 100%; /* Full width to occupy the container space */
+  height: 100%; /* Optional: Adjust height as needed */
+
+  /* Apply two backgrounds */
+  background-image: linear-gradient(to bottom, #f0f0f0 50%, transparent 50%),
+    linear-gradient(to bottom, #a0a0a0 50%, transparent 50%);
+  background-size: 50% 100%, 50% 100%; /* Each background covers half the width and full height */
+  background-repeat: no-repeat; /* Prevents background from repeating */
+  background-position: left, right; /* Aligns each gradient to the left and right halves */
+}

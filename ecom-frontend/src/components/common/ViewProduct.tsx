@@ -1,4 +1,10 @@
-import { Box, Typography, IconButton, Icon } from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  Icon,
+  CircularProgress,
+} from "@mui/material";
 import Star from "@mui/icons-material/Star";
 import { useEffect, useState } from "react";
 import ApiCall from "../../api/api-call";
@@ -43,7 +49,11 @@ export default function ViewProduct() {
   }, [productId]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <CircularProgress />
+      </>
+    );
   }
 
   return (

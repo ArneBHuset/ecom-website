@@ -34,7 +34,7 @@ export default function SearchField({ products }: SearchFieldProps) {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, position: "relative" }} margin={5}>
+    <Box sx={{ background: "red" }} padding={6} paddingLeft={18}>
       <Search>
         <SearchIconWrapper>
           <SearchIcon />
