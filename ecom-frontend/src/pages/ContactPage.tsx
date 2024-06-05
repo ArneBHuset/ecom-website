@@ -1,9 +1,12 @@
 import ContactForm from "../components/common/ContactForm";
+import { Container } from "@mui/material";
 
 function ContactPage() {
   return (
     <>
-      <ContactForm />
+      <Container maxWidth="md">
+        <ContactForm />
+      </Container>
     </>
   );
 }

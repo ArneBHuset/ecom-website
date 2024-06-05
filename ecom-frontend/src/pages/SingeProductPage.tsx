@@ -1,10 +1,12 @@
 import ViewProduct from "../components/common/ViewProduct";
-// import Footer from "../components/common/Footer";
+import { Container } from "@mui/material";
 
 export default function SingleProductPage() {
   return (
     <>
-      <ViewProduct />
+      <Container maxWidth="md">
+        <ViewProduct />
+      </Container>
     </>
   );
 }

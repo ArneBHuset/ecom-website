@@ -1,9 +1,12 @@
 import SuccessMessage from "../components/common/Success";
+import { Container } from "@mui/material";
 
 function CheckoutSuccessPage() {
   return (
     <>
-      <SuccessMessage />
+      <Container maxWidth="md">
+        <SuccessMessage />
+      </Container>
     </>
   );
 }

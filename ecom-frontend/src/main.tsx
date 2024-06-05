@@ -8,10 +8,26 @@ import { CartProvider } from "./components/ui/cart/CartContext.tsx";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#43080b",
+      main: "#FFA726",
+      contrastText: "#ffffff", // Ensuring text is readable on primary color
     },
     secondary: {
-      main: "#3f51b5",
+      main: "#EF6C00",
+      contrastText: "#ffffff",
+    },
+    error: {
+      main: "#f44336",
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    h1: {
+      fontSize: "2.2rem",
+      fontWeight: 500,
+    },
+    body1: {
+      fontSize: "1rem",
+      fontWeight: 400,
     },
   },
 });

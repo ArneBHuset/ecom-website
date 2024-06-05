@@ -1,6 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import { Stack } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <Box>
+    <Container maxWidth="md">
       <AppBar
         position="static"
         color="inherit"
@@ -70,6 +70,6 @@ export default function Header() {
           </IconButton>
         </Toolbar>
       </AppBar>
-    </Box>
+    </Container>
   );
 }

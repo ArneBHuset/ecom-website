@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Container maxWidth="md" disableGutters>
+    <Container maxWidth={false} disableGutters>
       <Box>
         <Header />
         <Box component="main">{children}</Box>

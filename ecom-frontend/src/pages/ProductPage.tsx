@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import LandingPage from "../components/layout/LandingPage";
 function ProductPage() {
   return (

@@ -10,6 +10,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../ui/search/Search";
+import { useTheme } from "@mui/material";
 
 interface SearchFieldProps {
   products: Product[];
@@ -19,6 +20,7 @@ export default function SearchField({ products }: SearchFieldProps) {
   const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const theme = useTheme();
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(input.toLowerCase())
@@ -34,38 +36,40 @@ export default function SearchField({ products }: SearchFieldProps) {
   };
 
   return (
-    <Box sx={{ background: "red" }} padding={6} paddingLeft={18}>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search products by title"
-          inputProps={{ "aria-label": "search" }}
-          value={input}
-          onChange={handleChange}
-          onFocus={() => setOpen(true)}
-          onBlur={() => setTimeout(() => setOpen(false), 3000)}
-        />
-      </Search>
-      {open && input && filteredProducts.length > 0 && (
-        <List
-          sx={{
-            position: "absolute",
-            width: "auto",
-            zIndex: 1,
-            bgcolor: "background.paper",
-          }}
-        >
-          {filteredProducts.map((product) => (
-            <ListItem>
-              <Button onClick={() => handleCardClick(product.id)}>
-                <ListItemText primary={product.title} />
-              </Button>
-            </ListItem>
-          ))}
-        </List>
-      )}
+    <Box sx={{ background: theme.palette.primary.main }}>
+      <Box maxWidth="lg">
+        <Search>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search products by title"
+            inputProps={{ "aria-label": "search" }}
+            value={input}
+            onChange={handleChange}
+            onFocus={() => setOpen(true)}
+            onBlur={() => setTimeout(() => setOpen(false), 3000)}
+          />
+        </Search>
+        {open && input && filteredProducts.length > 0 && (
+          <List
+            sx={{
+              position: "absolute",
+              width: "auto",
+              zIndex: 1,
+              bgcolor: "background.paper",
+            }}
+          >
+            {filteredProducts.map((product) => (
+              <ListItem>
+                <Button onClick={() => handleCardClick(product.id)}>
+                  <ListItemText primary={product.title} />
+                </Button>
+              </ListItem>
+            ))}
+          </List>
+        )}
+      </Box>
     </Box>
   );
 }
