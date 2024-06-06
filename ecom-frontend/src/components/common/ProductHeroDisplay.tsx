@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -6,7 +6,6 @@ import { CircularProgress, Stack, Typography } from "@mui/material";
 import { Item } from "../ui/other/Item";
 import { Product } from "../../types/ProductInterface";
 import { useTheme } from "@mui/material";
-import zIndex from "@mui/material/styles/zIndex";
 
 interface SearchFieldProps {
   products: Product[];
@@ -32,22 +31,20 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
     return Array.from(indices);
   };
 
-  // Function to assign random products to each Box
-  const assignRandomProducts = () => {
+  const assignRandomProducts = useCallback(() => {
     const randomIndices = generateRandomIndices(5, products.length);
     setProduct1(products[randomIndices[0]]);
     setProduct2(products[randomIndices[1]]);
     setProduct3(products[randomIndices[2]]);
     setProduct4(products[randomIndices[3]]);
     setProduct5(products[randomIndices[4]]);
-  };
+  }, [products]);
 
-  // Effect to update products on initial render or when products change
   useEffect(() => {
     if (products.length >= 5) {
       assignRandomProducts();
     }
-  }, [products]);
+  }, [products, assignRandomProducts]);
 
   const handleNavigate = (productId: string) => {
     navigate(`/Singleproduct/${productId}`);
@@ -58,25 +55,19 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
   }
 
   return (
-    <Grid container maxWidth="md">
-      <Grid
-        item
-        sm={6}
-        height={250}
-        sx={{ background: theme.palette.primary.main }}
-        zIndex={100}
-      >
+    <Grid container maxWidth="md" marginX={"auto"}>
+      <Grid item sm={6} marginTop={-28}>
         <Box
           className="hero-products-hover"
-          style={{ color: theme.palette.primary.main }}
           onClick={() => handleNavigate(product1.id)}
           border={1}
           borderRadius={40}
           height={440}
           width={340}
-          margin="auto"
+          marginX={"auto"}
           sx={{
             backgroundImage: `url(${product1.image.url})`,
+
             backgroundSize: "cover",
             display: "flex",
             flexDirection: "column",
@@ -94,25 +85,22 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
       </Grid>
       <Grid
         item
-        height={250}
-        zIndex={0}
+        marginTop={-28}
         sm={6}
         sx={{
           display: {
             xs: "none",
             md: "block",
-            background: theme.palette.primary.main,
           },
         }}
       >
         <Box
           className="hero-products-hover-up"
           onClick={() => handleNavigate(product2.id)}
-          border={1}
           borderRadius={40}
           height={420}
           width={400}
-          margin="auto"
+          marginX={"auto"}
           sx={{
             backgroundImage: `url(${product2.image.url})`,
             backgroundSize: "cover",
@@ -130,26 +118,20 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
           </Typography>
         </Box>
       </Grid>
-      <Grid
-        item
-        sm={6}
-        height={350}
-        sx={{ background: theme.palette.secondary.main }}
-        zIndex={50}
-      >
-        <Box marginTop={23}>
-          <Typography
+      <Grid item sm={6}>
+        <Box>
+          {/* <Typography
             variant="h6"
             width={"100%"}
             display={"flex"}
-            paddingLeft={8}
+            paddingLeft={15}
           >
             Check out these finds!
-          </Typography>
+          </Typography> */}
         </Box>
         <Stack
           direction="row"
-          marginTop={2}
+          marginTop={4}
           spacing={2}
           justifyContent={"center"}
         >
@@ -162,7 +144,7 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
               borderRadius={40}
               height={100}
               width={100}
-              margin="auto"
+              marginX={"auto"}
               sx={{
                 backgroundImage: `url(${product.image.url})`,
                 backgroundSize: "cover",
@@ -177,25 +159,21 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
           ))}
         </Stack>
       </Grid>
-      <Grid
-        item
-        sm={6}
-        height={350}
-        sx={{ background: theme.palette.secondary.main }}
-        zIndex={50}
-      >
+      <Grid item sm={6} height={200} zIndex={50}>
         <Item
           sx={{
             textAlign: "left",
+
             background: theme.palette.secondary.main,
-            marginLeft: "-12%",
+            marginTop: -27,
+            height: "100%",
             paddingRight: 10,
           }}
         >
           <Typography variant="h4" marginTop={4}>
             Welcome to FlashFinds
           </Typography>
-          <Typography paragraph color={"white"}>
+          <Typography paragraph color={"white"} marginTop={4}>
             Welcome to FlashFinds, your ultimate online destination for
             discovering incredible deals on must-have products! Explore a wide
             range of items that combine quality, variety, and unbeatable prices,

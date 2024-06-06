@@ -8,7 +8,6 @@ import { Item } from "../ui/other/Item";
 import SearchField from "../common/SearchField";
 import ProductHeroDisplay from "../common/ProductHeroDisplay";
 import { CircularProgress } from "@mui/material";
-import Container from "@mui/material";
 import useTheme from "@mui/material/styles/useTheme";
 
 export default function LandingPage() {
@@ -34,9 +33,13 @@ export default function LandingPage() {
   return (
     <>
       <Box>
-        <Box style={{ color: theme.palette.primary.main }}>
+        <Box height={760} style={{ background: theme.palette.primary.main }}>
           <SearchField products={products} />
-          <Box>
+          <Box
+            height={380}
+            marginTop={43}
+            style={{ background: theme.palette.secondary.main }}
+          >
             <ProductHeroDisplay products={products} />
           </Box>
         </Box>

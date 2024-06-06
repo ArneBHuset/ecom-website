@@ -8,68 +8,84 @@ import MenuIcon from "@mui/icons-material/Menu";
 import HeaderCart from "../ui/buttons/HeaderCart";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 // const smallMenu = {};
 // const BigMenu = {};
 
 export default function Header() {
+  const theme = useTheme();
   return (
-    <Container maxWidth="md">
-      <AppBar
-        position="static"
-        color="inherit"
-        sx={{ borderBottom: 1, boxShadow: "none" }}
-      >
-        <Toolbar>
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            <Button color="inherit" component={Link} to="/">
-              Home
-            </Button>
-            <Button color="inherit" component={Link} to="/product">
-              All products
-            </Button>
-            <Button color="inherit" component={Link} to="/contact">
-              Contact us!
-            </Button>
-          </Stack>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              justifyContent: "center",
-              display: { xs: "none", sm: "block" },
-            }}
-          >
-            FlashFinds
-          </Typography>
+    <Container
+      maxWidth={false}
+      style={{ background: theme.palette.primary.main }}
+    >
+      <Box maxWidth="md" marginX={"auto"}>
+        <AppBar
+          position="sticky"
+          sx={{
+            boxShadow: "none",
+            borderBottom: `solid 1px ${theme.palette.common.white}`,
+          }}
+        >
+          <Toolbar>
+            <Stack
+              direction="row"
+              sx={{ flexGrow: 1, display: { xs: "none", md: "block" } }}
+            >
+              <Button
+                style={theme.typography.h6}
+                color="inherit"
+                component={Link}
+                to="/"
+              >
+                Home
+              </Button>
 
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{
-              display: {
-                xs: "block",
-                width: "100%",
-                textAlign: "right",
-                sm: "none",
-              },
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <IconButton color="inherit" component={Link} to="/cart">
-            <HeaderCart />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+              <Button
+                style={theme.typography.h6}
+                color="inherit"
+                component={Link}
+                to="/contact"
+              >
+                Contact
+              </Button>
+            </Stack>
+            <Typography
+              style={theme.typography.h2}
+              noWrap
+              component="div"
+              sx={{
+                flexGrow: 2,
+                justifyContent: "center",
+                display: { xs: "none", sm: "block" },
+              }}
+            >
+              FLASH FINDS
+            </Typography>
+
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              sx={{
+                display: {
+                  xs: "block",
+                  width: "100%",
+                  textAlign: "left",
+                  sm: "none",
+                },
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <IconButton component={Link} to="/cart">
+              <HeaderCart />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </Box>
     </Container>
   );
 }

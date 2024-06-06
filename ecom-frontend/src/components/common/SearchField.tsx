@@ -36,10 +36,14 @@ export default function SearchField({ products }: SearchFieldProps) {
   };
 
   return (
-    <Box sx={{ background: theme.palette.primary.main }}>
-      <Box maxWidth="lg">
+    <Box
+      display={"flex"}
+      justifyContent={"center"}
+      sx={{ background: theme.palette.primary.main }}
+    >
+      <Box maxWidth="md" marginTop={4} marginRight={60}>
         <Search>
-          <SearchIconWrapper>
+          <SearchIconWrapper color="red" sx={{ zIndex: "10" }}>
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
