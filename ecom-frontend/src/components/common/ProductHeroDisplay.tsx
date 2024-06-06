@@ -69,6 +69,7 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
             backgroundImage: `url(${product1.image.url})`,
 
             backgroundSize: "cover",
+            backgroundPosition: "center -80px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -95,7 +96,7 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
         }}
       >
         <Box
-          className="hero-products-hover-up"
+          className="hero-products-hover-up product-image-slice"
           onClick={() => handleNavigate(product2.id)}
           borderRadius={40}
           height={420}
@@ -104,6 +105,7 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
           sx={{
             backgroundImage: `url(${product2.image.url})`,
             backgroundSize: "cover",
+            backgroundPosition: "center -120px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -148,6 +150,7 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
               sx={{
                 backgroundImage: `url(${product.image.url})`,
                 backgroundSize: "cover",
+                backgroundPosition: "center -10px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -165,7 +168,7 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
             textAlign: "left",
 
             background: theme.palette.secondary.main,
-            marginTop: -27,
+            marginTop: -27.2,
             height: "100%",
             paddingRight: 10,
           }}

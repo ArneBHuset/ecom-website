@@ -2,7 +2,6 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box, Icon, IconButton } from "@mui/material";
@@ -12,28 +11,30 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import { useTheme } from "@mui/material";
 
 export default function CartList() {
   const { cart, resetCart, addToCart, removeFromCart } = useCart();
+  const theme = useTheme();
   if (cart.length === 0) {
     return (
-      <Icon sx={{ width: "auto", height: "auto" }}>
-        <ProductionQuantityLimitsIcon sx={{ fontSize: 200, opacity: 0.4 }} />
+      <Icon
+        sx={{
+          width: "auto",
+          height: "auto",
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "10%",
+        }}
+      >
+        <ProductionQuantityLimitsIcon sx={{ fontSize: 200, opacity: 0.3 }} />
       </Icon>
     );
   } else {
     return (
       <Box>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Image</TableCell>
-                <TableCell align="left">Calories</TableCell>
-                <TableCell align="left">Price</TableCell>
-                <TableCell align="center">Qty</TableCell>
-              </TableRow>
-            </TableHead>
+          <Table aria-label="simple table">
             <TableBody>
               {cart.map((item) => (
                 <TableRow
@@ -48,11 +49,13 @@ export default function CartList() {
                       style={{ borderRadius: "50%" }}
                     ></img>
                   </TableCell>
-                  <TableCell component="th" scope="row">
+                  <TableCell style={theme.typography.h6} scope="row">
                     {item.title}
                   </TableCell>
-                  <TableCell align="right">{item.price}</TableCell>
-                  <TableCell align="right">
+                  <TableCell style={theme.typography.h6} align="right">
+                    {item.price}
+                  </TableCell>
+                  <TableCell style={theme.typography.h6} align="right">
                     <IconButton onClick={() => removeFromCart(item)}>
                       {item.quantity > 1 ? <RemoveIcon /> : <DeleteIcon />}
                     </IconButton>
@@ -67,7 +70,12 @@ export default function CartList() {
           </Table>
         </TableContainer>
         <Box sx={{ display: "flex", justifyContent: "right", marginTop: 4 }}>
-          <TerminateBtn onClick={resetCart}>Clear cart</TerminateBtn>
+          <TerminateBtn
+            onClick={resetCart}
+            sx={{ color: theme.palette.primary.main }}
+          >
+            Clear cart
+          </TerminateBtn>
         </Box>
       </Box>
     );

@@ -36,8 +36,8 @@ body {
 }
 
 .review-box {
-  background-color: #e2e2e2;
   margin-bottom: 0.5em;
+  border-bottom: 1px solid white;
 }
 
 .product-image {
@@ -46,7 +46,7 @@ body {
   object-fit: cover;
 }
 
-.product-hero-slice {
+.product-image-slice {
   clip-path: polygon(0 0, 100% 0, 100% 65%, 0 65%);
 }
 
