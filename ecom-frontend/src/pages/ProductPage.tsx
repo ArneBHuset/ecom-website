@@ -1,9 +1,8 @@
+import LandingPage from "../components/layout/LandingPage";
 function ProductPage() {
   return (
     <>
-      <div>
-        <h1>Product page</h1>
-      </div>
+      <LandingPage />
     </>
   );
 }
