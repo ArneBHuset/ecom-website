@@ -1,4 +1,4 @@
-import SuccessMessage from "../components/common/Success";
+import SuccessMessage from "../components/cart/Success";
 import { Container } from "@mui/material";
 
 function CheckoutSuccessPage() {

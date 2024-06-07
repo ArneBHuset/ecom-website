@@ -1,12 +1,12 @@
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import ProductItem from "../common/ProductItem";
+import ProductItem from "../products/ProductItem";
 import ApiCall from "../../api/api-call";
 import { useState, useEffect } from "react";
 import { Product } from "../../types/ProductInterface";
 import { Item } from "../ui/other/Item";
 import SearchField from "../common/SearchField";
-import ProductHeroDisplay from "../common/ProductHeroDisplay";
+import ProductHeroDisplay from "../products/ProductHeroDisplay";
 import { CircularProgress } from "@mui/material";
 import useTheme from "@mui/material/styles/useTheme";
 
@@ -25,7 +25,9 @@ export default function LandingPage() {
   if (!products) {
     return (
       <>
-        <CircularProgress />
+        <Box display={"flex"} justifyContent={"center"}>
+          <CircularProgress />
+        </Box>
       </>
     );
   }
@@ -36,8 +38,8 @@ export default function LandingPage() {
         <Box height={760} style={{ background: theme.palette.primary.main }}>
           <SearchField products={products} />
           <Box
-            height={380}
-            marginTop={43}
+            height={410}
+            marginTop={35}
             style={{ background: theme.palette.secondary.main }}
           >
             <ProductHeroDisplay products={products} />
@@ -48,12 +50,11 @@ export default function LandingPage() {
           rowSpacing={1}
           columnSpacing={1}
           maxWidth="md"
-          marginLeft={"auto"}
-          marginRight={"auto"}
+          marginX={"auto"}
           marginTop={10}
         >
           {products.map((product: Product) => (
-            <Grid item xs={12} sm={6} md={4} key={product.id}>
+            <Grid item xs={12} sm={6} md={4} key={product.id} marginX={"auto"}>
               <Item>
                 <ProductItem product={product} />
               </Item>

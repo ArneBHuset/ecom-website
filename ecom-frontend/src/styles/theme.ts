@@ -56,7 +56,7 @@ const theme = createTheme({
     h5: {
       fontFamily: '"Noto Serif", serif',
       fontSize: "1.4rem",
-      fontWeight: 700,
+      fontWeight: 500,
     },
     h6: {
       fontFamily: '"Noto Serif", serif',

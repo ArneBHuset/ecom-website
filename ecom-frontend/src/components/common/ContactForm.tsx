@@ -80,7 +80,7 @@ export default function ContactForm() {
       }}
     >
       <Typography variant="h5" component="h2" textAlign="center">
-        Contact Us
+        CONTACT US
       </Typography>
       {fieldNames.map((field, index) => (
         <FormControl key={index} margin="normal" fullWidth>

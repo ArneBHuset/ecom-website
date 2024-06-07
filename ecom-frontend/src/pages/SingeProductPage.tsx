@@ -1,4 +1,4 @@
-import ViewProduct from "../components/common/ViewProduct";
+import ViewProduct from "../components/products/ViewProduct";
 import { Container } from "@mui/material";
 
 export default function SingleProductPage() {

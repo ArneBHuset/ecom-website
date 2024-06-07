@@ -7,7 +7,7 @@ import { Product } from "../../types/ProductInterface";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../ui/search/Search";
 import { useTheme } from "@mui/material";
@@ -41,7 +41,7 @@ export default function SearchField({ products }: SearchFieldProps) {
       justifyContent={"center"}
       sx={{ background: theme.palette.primary.main }}
     >
-      <Box maxWidth="md" marginTop={4} marginRight={60}>
+      <Box maxWidth="md" marginTop={4} sx={{ marginRight: { md: 55 } }}>
         <Search>
           <SearchIconWrapper color="red" sx={{ zIndex: "10" }}>
             <SearchIcon />
@@ -59,15 +59,45 @@ export default function SearchField({ products }: SearchFieldProps) {
           <List
             sx={{
               position: "absolute",
-              width: "auto",
-              zIndex: 1,
-              bgcolor: "background.paper",
+              width: { xs: "26ch", sm: "36ch" },
+              maxHeight: 300, // Set a max height for scrollability
+              overflowY: "auto", // Allow scrolling
+              marginLeft: 3,
+              zIndex: 1000,
+              bgcolor: theme.palette.common.white,
+              borderBottomLeftRadius: 60,
+              borderBottomRightRadius: 60,
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                e.preventDefault();
+                // Add logic to focus the next/previous item
+              }
             }}
           >
             {filteredProducts.map((product) => (
-              <ListItem>
-                <Button onClick={() => handleCardClick(product.id)}>
-                  <ListItemText primary={product.title} />
+              <ListItem tabIndex={0}>
+                <Button
+                  onClick={() => handleCardClick(product.id)}
+                  sx={{
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.main,
+                      color: theme.palette.common.white,
+                    },
+                  }}
+                >
+                  <ListItemText
+                    primary={
+                      <Typography
+                        sx={{
+                          textAlign: "center",
+                          fontSize: theme.typography.h6,
+                        }}
+                      >
+                        {product.title}
+                      </Typography>
+                    }
+                  />
                 </Button>
               </ListItem>
             ))}
