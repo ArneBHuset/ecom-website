@@ -16,6 +16,14 @@ interface SearchFieldProps {
   products: Product[];
 }
 
+/**
+ * Represents a search input field that dynamically filters products based on titles.
+ * Displays a dropdown list of matching products. Each product can be clicked to navigate to its detailed product page.
+ * @param {SearchFieldProps} props - The props passed to the component.
+ * @param {Product[]} props.products - An array of Product objects to search through.
+ * @returns {JSX.Element} The SearchField component renders a search bar with auto-complete suggestions
+ *                        that appear as the user types, and provides navigation functionality to the product details.
+ */
 export default function SearchField({ products }: SearchFieldProps) {
   const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
@@ -60,19 +68,13 @@ export default function SearchField({ products }: SearchFieldProps) {
             sx={{
               position: "absolute",
               width: { xs: "26ch", sm: "36ch" },
-              maxHeight: 300, // Set a max height for scrollability
-              overflowY: "auto", // Allow scrolling
+              maxHeight: 300,
+              overflowY: "auto",
               marginLeft: 3,
               zIndex: 1000,
               bgcolor: theme.palette.common.white,
               borderBottomLeftRadius: 60,
               borderBottomRightRadius: 60,
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-                e.preventDefault();
-                // Add logic to focus the next/previous item
-              }
             }}
           >
             {filteredProducts.map((product) => (

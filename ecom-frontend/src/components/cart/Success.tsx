@@ -16,8 +16,7 @@ import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 
 /**
  This component displays a success message when the user has successfully placed an order.
- Furhtermore, it will set the cart items in a new useState for summary display, 
- before running the resetCart(), which empties the main cart state
+ Will set the cart items in a new useState for a summary display, before running the resetCart(), which empties the main cart state
  */
 export default function SuccessMessage() {
   const { cart, resetCart } = useCart();

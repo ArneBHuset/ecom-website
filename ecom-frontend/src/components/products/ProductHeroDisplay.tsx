@@ -2,16 +2,25 @@ import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { CircularProgress, Stack, Typography } from "@mui/material";
+import { CircularProgress, Icon, Stack, Typography } from "@mui/material";
 import { Item } from "../ui/other/Item";
 import { Product } from "../../types/ProductInterface";
 import { useTheme } from "@mui/material";
-import Button from "@mui/material";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 interface SearchFieldProps {
   products: Product[];
 }
 
+/**
+ * ProductHeroDisplay component displays products in an alternative layout
+ * Five randomly selected products are chosen, indexing the API objects upon initial render.
+ *
+ * @param {Product[]} props.products - Contains all products fetched in the API, passed from layout/LandingPage.tsx.
+ 
+ * @returns {JSX.Element} A grid layout that features a hero section with one large and one medium product image,
+ *                        followed by a row of smaller product images. 
+ */
 export default function ProductHeroDisplay({ products }: SearchFieldProps) {
   const navigate = useNavigate();
   const theme = useTheme();
@@ -178,12 +187,36 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
             must-have products! Explore a wide range of items that combine
             quality, variety, and unbeatable prices, all at your fingertips.
           </Typography>
-          <Typography display={"flex"}>
-            Missing anything from your shopping list? Click{"  "}
-            <Link to="/contact" style={{ textDecoration: "none" }}>
-              <Box style={{ padding: "0", minHeight: "auto" }}> here</Box>
-            </Link>
-          </Typography>
+          <Link to="/contact" style={{ textDecoration: "none" }}>
+            <Typography
+              display={"flex"}
+              gap={1}
+              variant="h5"
+              color={theme.palette.common.white}
+              paddingTop={10}
+              sx={{
+                ":hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              Are we missing something
+              <br />
+              <Box
+                display="flex"
+                alignItems="center"
+                sx={{
+                  cursor: "pointer",
+                  color: theme.palette.common.white,
+                }}
+              >
+                - get in touch
+                <Icon>
+                  <ArrowForwardIosIcon sx={{ fontSize: theme.typography.h5 }} />
+                </Icon>
+              </Box>
+            </Typography>
+          </Link>
         </Item>
       </Grid>
     </Grid>

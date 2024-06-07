@@ -13,6 +13,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import { useTheme } from "@mui/material";
 
+/**
+ * CartList component displays a detailed list of items currently in the shopping cart.
+ * It allows users to add, remove, or delete items directly from this list.
+ */
 export default function CartList() {
   const { cart, resetCart, addToCart, removeFromCart } = useCart();
   const theme = useTheme();

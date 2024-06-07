@@ -13,21 +13,13 @@ import { Product } from "../../types/ProductInterface";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 
 /**
- * ProductItem renders a product card for the LandingPage layout file.
- * It displays the product's image, title, description, and allows for adding the product to the
- * shopping cart and to navigate to the product's detailed page.
- * Props:
- *  - `product`: Object containing details about the product. This object must conform
- *    to the `Product` interface, which typically includes properties like id, title,
- *    description, image, rating, and price.
+ * ProductItem is designed to return a single product card to the LandingPage layout. It provides a summary of the product,
+ * including an image, title, description, and interactive icons for adding the item to the cart and rating display.
+ * The card also navigates to a detailed product page.
  *
- * Behavior:
- *  - Clicking on the card navigates to the product's detail page.
- *  - Clicking the cart icon adds the product to the shopping cart.
- *  - Hovering over the card shows a tooltip-like box that prompts the user to view more
- *    details about the product.
+ * @param {Product} product - Contains all products fetched in the API, passed from layout/LandingPage.tsx.
+ * @returns {JSX.Element} A card that visually represents the product.
  */
-
 export default function ProductItem({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const navigate = useNavigate();

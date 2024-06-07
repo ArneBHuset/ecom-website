@@ -4,9 +4,13 @@ import { useCart } from "../ui/cart/useCart";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material";
 
+/**
+ * Checkout component displays amount of items in cart and total sum.
+ * Holds button for submitting the checkout, which is disabled if there are no items in cart.
+ */
 export default function Checkout() {
   const { cart } = useCart();
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);

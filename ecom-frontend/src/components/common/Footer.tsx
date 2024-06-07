@@ -15,7 +15,7 @@ export default function Footer() {
               About
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Demo website for a fictional business as part of a Noroff project.
+              ECOM website, as part of a Noroff project.
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Created by Arne Hustveit
@@ -33,7 +33,7 @@ export default function Footer() {
               Contact Us
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              123 Main Street, Anytown, USA
+              123 Super Street, Anytown, Norway
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>

@@ -10,6 +10,14 @@ import ProductHeroDisplay from "../products/ProductHeroDisplay";
 import { CircularProgress } from "@mui/material";
 import useTheme from "@mui/material/styles/useTheme";
 
+/**
+ * LandingPage is a React component that serves as the main entry point for viewing products.
+ * It fetches product data from an API on initial load, displays a progress spinner while loading,
+ * and renders a list of products, a hero display, and a search field once data is available.
+ *
+ * @returns {JSX.Element} Renders the landing page of the application, which includes a search field,
+ *                        a hero display section for featured products, and a grid of product items.
+ */
 export default function LandingPage() {
   const [products, setProducts] = useState<Product[] | null>(null);
   const theme = useTheme();

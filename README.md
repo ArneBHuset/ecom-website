@@ -1,53 +1,50 @@
-# Project Title
+# FlashFinds
 
-eCOM website project for JS-framework course by Noroff, focusing on React.
+eCOM Website Project
 
-A brief description of what this project does and who it's for
+eCOM website project for the JS-framework course by Noroff, focusing on React. This project aims to create an e-commerce store where users can browse products, add them to their cart, and check out.
 
 ## Authors
 
-- [ArneBHuset] [Arne Bjelde Hustveit]
+- Arne Bjelde Hustveit
+- Github: [ArneBHuset](https://github.com/ArneBHuset)
 
 ## Tech Stack
 
-**Client:** React
-
-**Server:**
-
-**Other:** Vite, React-Router-Dom
+Client: React, MUI (Material-UI)
+Tools: Vite, React Router DOM
+State Management: React Redux
 
 ## Demo
 
-Insert gif or link to demo
+Netlify link
 
 ## Deployment
 
-To deploy this project run
+This project is deployed on Netlify. To deploy your own version of the project, run:
 
 ```bash
-  npm run deploy
+  npm run build
+  npm run preview
 ```
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
-
-`API_KEY`
-
-`ANOTHER_API_KEY`
+N/A
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/ArneBHuset/ecom-website.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd ecom-frontend
+
 ```
 
 Install dependencies
@@ -59,7 +56,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm run dev
 ```
 
 ## Running Tests
@@ -70,11 +67,22 @@ To run tests, run the following command
   npm run test
 ```
 
-## Installation
+## Features
 
-Install my-project with npm
+- Product Browsing: View a list of products on the homepage.
+- Search Functionality: Dynamic look-ahead search bar to filter products.
+- Product Details: Click on any product to view its detailed information.
+- Shopping Cart: Add items to the shopping cart and view them on the cart page.
+- Checkout Process: Proceed to checkout and view a success message upon completion.
+- Responsive Design: Fully responsive layout that works on mobile, tablet, and desktop.
+- Contact Form: A contact page with validated form inputs to send inquiries.
 
-```bash
-  npm install my-project
-  cd my-project
-```
+## Acknowledgements
+
+- React documentation
+- Material-UI documentation
+- Chat GPT & Github Copilot
+
+## License
+
+Distributed under the MIT License. See LICENSE for more information.

@@ -14,10 +14,16 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useCart } from "../ui/cart/useCart";
 import { Item } from "../ui/other/Item";
 import { useTheme } from "@mui/material";
-
 import { Product } from "../../types/ProductInterface";
-// import { Review } from "../../types/ProductInterface";
 
+/**
+ * Component that fetches displays detailed information about a single product.
+ * It allows users to add the product to their shopping cart.
+ * Reviews for the product are shown, if available.
+ *
+ * @param {Product[]} props.products - Contains all products fetched in the API, passed from layout/LandingPage.tsx.
+ * @returns {JSX.Element} A detailed view of a single product with options to add the item to the cart.
+ */
 export default function ViewProduct() {
   const [product, setProduct] = useState<Product | null>(null);
   const { productId } = useParams();
@@ -65,7 +71,7 @@ export default function ViewProduct() {
             className="product-image-slice"
             borderRadius={40}
             height={600}
-            width={450}
+            width={"95%"}
             sx={{
               backgroundImage: `url(${product.image.url})`,
               backgroundSize: "cover",
@@ -73,16 +79,19 @@ export default function ViewProduct() {
             }}
           ></Box>
         </Grid>
-        <Grid item xs={12} sm={5}>
+        <Grid item xs={12} sm={5} sx={{ marginTop: { xs: -25, sm: 0 } }}>
           <Item>
             <Box
               display={"flex"}
-              gap={20}
+              alignItems={"center"}
+              gap={"40%"}
               borderBottom={`1px solid ${theme.palette.common.white}`}
             >
               <Typography variant="h4">{product.title}</Typography>
               <IconButton aria-label="add to cart" onClick={handleAddToCart}>
-                <AddShoppingCartIcon />
+                <AddShoppingCartIcon
+                  sx={{ color: theme.palette.common.black }}
+                />
               </IconButton>
             </Box>
             <Typography paragraph marginTop={2}>
@@ -140,8 +149,7 @@ export default function ViewProduct() {
                         color: theme.palette.primary.main,
                       }}
                     >
-                      <Star sx={{ fontSize: theme.typography.h2 }} />
-                      {/* Larger Star */}
+                      <Star sx={{ fontSize: theme.typography.h1 }} />
                       <Typography
                         component="span"
                         sx={{
@@ -150,7 +158,7 @@ export default function ViewProduct() {
                           left: "50%",
                           transform: "translate(-50%, -50%)",
                           fontSize: theme.typography.h6,
-                          color: theme.palette.common.white, // Ensuring text is visible on the icon
+                          color: theme.palette.common.white,
                         }}
                       >
                         {review.rating}
