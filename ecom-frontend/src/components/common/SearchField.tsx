@@ -73,8 +73,8 @@ export default function SearchField({ products }: SearchFieldProps) {
               marginLeft: 3,
               zIndex: 1000,
               bgcolor: theme.palette.common.white,
-              borderBottomLeftRadius: 60,
-              borderBottomRightRadius: 60,
+              borderBottomLeftRadius: 50,
+              borderBottomRightRadius: 50,
             }}
           >
             {filteredProducts.map((product) => (
@@ -82,9 +82,11 @@ export default function SearchField({ products }: SearchFieldProps) {
                 <Button
                   onClick={() => handleCardClick(product.id)}
                   sx={{
+                    color: theme.palette.common.black,
                     "&:hover": {
                       backgroundColor: theme.palette.primary.main,
-                      color: theme.palette.common.white,
+                      color: theme.palette.common.black,
+                      textDecoration: "underline",
                     },
                   }}
                 >
@@ -93,6 +95,7 @@ export default function SearchField({ products }: SearchFieldProps) {
                       <Typography
                         sx={{
                           textAlign: "center",
+                          paddingLeft: 2,
                           fontSize: theme.typography.h6,
                         }}
                       >

@@ -46,9 +46,15 @@ export default function LandingPage() {
         <Box height={760} style={{ background: theme.palette.primary.main }}>
           <SearchField products={products} />
           <Box
-            height={410}
+            height={420}
             marginTop={35}
             style={{ background: theme.palette.secondary.main }}
+            sx={{
+              borderBottom: 6,
+              borderColor: theme.palette.primary.main,
+              borderBottomLeftRadius: 20,
+              borderBottomRightRadius: 20,
+            }}
           >
             <ProductHeroDisplay products={products} />
           </Box>

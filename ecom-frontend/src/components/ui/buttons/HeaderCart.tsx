@@ -12,11 +12,14 @@ export default function HeaderCart() {
     <>
       <IconButton
         aria-label="cart"
-        style={{ color: theme.palette.common.white }}
+        style={{ color: theme.palette.common.black }}
+        sx={{ "&:hover": { color: "none" } }}
       >
-        <ShoppingCartCheckoutIcon sx={{ fontSize: theme.typography.h4 }} />
+        <ShoppingCartCheckoutIcon
+          sx={{ fontSize: theme.typography.h4, "&:hover": { color: "none" } }}
+        />
         <Typography
-          style={{ color: theme.palette.common.white }}
+          style={{ color: theme.palette.common.black }}
           sx={{
             position: "relative",
             top: -10,

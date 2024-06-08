@@ -1,12 +1,12 @@
 import { styled } from "@mui/material/styles";
 import Button, { ButtonProps } from "@mui/material/Button";
-import { red } from "@mui/material/colors";
 
 export const TerminateBtn = styled(Button)<ButtonProps>(({ theme }) => ({
-  color: theme.palette.getContrastText(red[500]),
-  backgroundColor: red[500],
+  color: theme.palette.common.black,
+  backgroundColor: theme.palette.primary.main,
   "&:hover": {
-    backgroundColor: red[700],
+    textDecoration: "underline",
+    backgroundColor: theme.palette.primary.main,
   },
   alignContent: "right",
 }));

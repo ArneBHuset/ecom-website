@@ -67,11 +67,11 @@ export default function ProductItem({ product }: { product: Product }) {
           image={product.image.url}
           alt={product.image.alt || `Image for ${product.title}`}
         />
-        <CardContent sx={{ margin: 0, paddingBottom: 0 }}>
+        <CardContent sx={{ margin: 0, paddingBottom: 0, paddingTop: 1 }}>
           <Typography
+            variant="h5"
             sx={{
               textAlign: "left",
-              typography: theme.typography.h6,
               textTransform: "uppercase",
             }}
           >
@@ -131,8 +131,9 @@ export default function ProductItem({ product }: { product: Product }) {
             top: 5,
             right: 0,
             backgroundColor: theme.palette.primary.main,
-            color: theme.palette.common.white,
-            padding: "8px 16px",
+            color: theme.palette.common.black,
+            fontFamily: theme.typography.h5,
+            padding: "6px 12px",
             borderRadius: "4px",
             alignItems: "center",
             justifyContent: "center",

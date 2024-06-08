@@ -45,7 +45,10 @@ export default function Header() {
             >
               <Button
                 style={theme.typography.h6}
-                color="inherit"
+                sx={{
+                  color: theme.palette.common.black,
+                  "&:hover": { textDecoration: "underline" },
+                }}
                 component={Link}
                 to="/"
               >
@@ -54,7 +57,13 @@ export default function Header() {
 
               <Button
                 style={theme.typography.h6}
-                color="inherit"
+                sx={{
+                  color: theme.palette.common.black,
+                  "&:hover": {
+                    textDecoration: "underline",
+                    textDecorationColor: theme.palette.common.black,
+                  },
+                }}
                 component={Link}
                 to="/contact"
               >
@@ -68,6 +77,7 @@ export default function Header() {
               sx={{
                 flexGrow: 2,
                 justifyContent: "center",
+                color: theme.palette.common.black,
                 display: { xs: "none", sm: "block" },
               }}
             >
