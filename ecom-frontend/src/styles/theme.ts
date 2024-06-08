@@ -13,75 +13,76 @@ declare module "@mui/material/styles" {
     };
   }
 }
+// #FFA726
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#FFA726",
-      contrastText: "#ffffff", // Ensuring text is readable on primary color
+      main: "#e5c185",
+      contrastText: "#ffffff",
     },
     secondary: {
-      main: "#EF6C00",
+      main: "#355548",
       contrastText: "#ffffff",
     },
     error: {
       main: "#f44336",
     },
     common: {
-      white: "#ffffff",
-      black: "#000000",
+      white: "#EAEEF0",
+      black: "#2B2B2B",
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // Default font family
+    fontFamily: '"Montserrat", "Lato", "Arial"',
     h1: {
-      fontFamily: '"Noto Serif", serif', // Specific font family for H1
-      fontSize: "2.6rem", // Example size
-      fontWeight: 700, // Bold weight
-    },
-    h2: {
-      fontFamily: '"Noto Serif", serif',
+      fontFamily: '"Montserrat"',
       fontSize: "2.2rem",
-      fontWeight: 700,
-    },
-    h3: {
-      fontFamily: '"Noto Serif", serif',
-      fontSize: "1.8rem",
-      fontWeight: 700,
-    },
-    h4: {
-      fontFamily: '"Noto Serif", serif',
-      fontSize: "1.6rem",
-      fontWeight: 700,
-    },
-    h5: {
-      fontFamily: '"Noto Serif", serif',
-      fontSize: "1.4rem",
+      fontStyle: "normal",
       fontWeight: 500,
     },
-    h6: {
-      fontFamily: '"Noto Serif", serif',
+    h2: {
+      fontFamily: '"Montserrat"',
+      fontSize: "2.0rem",
+      fontStyle: "normal",
+      fontWeight: 500,
+    },
+    h3: {
+      fontFamily: '"Montserrat"',
+      fontSize: "1.6rem",
+      fontStyle: "normal",
+      fontWeight: 500,
+    },
+    h4: {
+      fontFamily: '"Montserrat"',
+      fontSize: "1.4rem",
+      fontStyle: "normal",
+      fontWeight: 400,
+    },
+    h5: {
+      fontFamily: '"Montserrat"',
       fontSize: "1.2rem",
+      fontStyle: "normal",
+      fontWeight: 400,
+    },
+    h6: {
+      fontFamily: '"Montserrat"',
+      fontSize: "1.1rem",
+      fontStyle: "normal",
       fontWeight: 400,
     },
     body1: {
-      fontFamily: '"Noto Sans", sans-serif',
-      fontSize: "1rem",
+      fontFamily: '"Lato"',
+      fontSize: "1.1rem",
+      fontStyle: "normal",
+      opacity: 1,
       fontWeight: 400,
     },
     body2: {
-      fontFamily: '"Noto Sans", sans-serif',
-      fontSize: "0.875rem",
-      fontWeight: 400,
-    },
-    subtitle1: {
-      fontFamily: '"Noto Sans", sans-serif',
+      fontFamily: '"Lato"',
+      fontStyle: "italic",
       fontSize: "1rem",
-      fontWeight: 500, // Slightly bolder
-    },
-    subtitle2: {
-      fontFamily: '"Noto Sans", sans-serif',
-      fontSize: "0.875rem",
-      fontWeight: 500,
+      opacity: 1,
+      fontWeight: 300,
     },
   },
   shape: {

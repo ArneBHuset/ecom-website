@@ -13,6 +13,7 @@ import { useCart } from "../ui/cart/useCart";
 import { useEffect, useState } from "react";
 import { CartItem } from "../../types/CartInterface";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
+import { useTheme } from "@mui/material";
 
 /**
  This component displays a success message when the user has successfully placed an order.
@@ -21,6 +22,7 @@ import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
 export default function SuccessMessage() {
   const { cart, resetCart } = useCart();
   const [finalOrderDetails, setFinalOrderDetails] = useState<CartItem[]>([]);
+  const theme = useTheme();
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -35,22 +37,40 @@ export default function SuccessMessage() {
 
   return (
     <>
-      <Grid
-        container
-        display={"flex"}
-        justifyContent={"center"}
-        textAlign={"center"}
-      >
+      <Grid container display={"flex"} justifyContent={"center"}>
         <Box>
-          <Typography variant="h4" gutterBottom>
+          <Typography marginTop={6} variant="h2">
             Success!
           </Typography>
-          <Typography>Your order has been placed.</Typography>
-          <Button component={Link} to="/contact">
+          <Typography variant="h4" marginY={2}>
+            Your order has been placed.
+          </Typography>
+          <Button
+            component={Link}
+            sx={{
+              color: theme.palette.common.black,
+              padding: 1,
+              border: 2,
+              borderColor: theme.palette.primary.main,
+              "&:hover": { textDecoration: "underline" },
+            }}
+            to="/contact"
+          >
             Have any questions?
           </Button>
-          <Button component={Link} to="/product">
-            Continue shopping
+          <Button
+            component={Link}
+            to="/"
+            sx={{
+              color: theme.palette.common.black,
+              padding: 1,
+              border: 2,
+              marginLeft: 2,
+              borderColor: theme.palette.secondary.main,
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
+            Continue shopping?
           </Button>
         </Box>
       </Grid>

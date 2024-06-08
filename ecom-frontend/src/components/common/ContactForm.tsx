@@ -5,6 +5,7 @@ import { Box, TextField, Button, Typography, FormControl } from "@mui/material";
 import { useState } from "react";
 import Icon from "@mui/material/Icon";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useTheme } from "@mui/material";
 
 /**
  * For validating form inputs
@@ -27,6 +28,7 @@ const schema = yup.object().shape({
 });
 
 export default function ContactForm() {
+  const theme = useTheme();
   const {
     control,
     handleSubmit,
@@ -113,7 +115,10 @@ export default function ContactForm() {
           <Icon>
             <CheckCircleIcon />
           </Icon>
-          <Typography variant="subtitle1" sx={{ ml: 1 }}>
+          <Typography
+            variant="body1"
+            sx={{ ml: 1, color: theme.palette.common.black }}
+          >
             Thank you for getting in touch!
           </Typography>
         </Box>
@@ -121,7 +126,12 @@ export default function ContactForm() {
       <Button
         type="submit"
         variant="contained"
-        sx={{ mt: 3, display: "block", mx: "auto" }}
+        sx={{
+          mt: 3,
+          display: "block",
+          mx: "auto",
+          color: theme.palette.common.black,
+        }}
       >
         Send Message
       </Button>

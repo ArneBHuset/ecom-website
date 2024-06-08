@@ -141,8 +141,8 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
               className="hero-products-hover"
               onClick={() => handleNavigate(product.id)}
               borderRadius={40}
-              height={100}
-              width={100}
+              height={120}
+              width={120}
               marginX={"auto"}
               sx={{
                 backgroundImage: `url(${product.image.url})`,
@@ -176,13 +176,18 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
           }}
         >
           <Typography
-            variant="h4"
+            variant="h2"
             color={theme.palette.common.white}
             marginTop={4}
           >
             Welcome to FlashFinds
           </Typography>
-          <Typography paragraph variant="body1" color={"white"} marginTop={2}>
+          <Typography
+            paragraph
+            variant="body1"
+            color={theme.palette.common.white}
+            marginTop={4}
+          >
             Your ultimate online destination for discovering incredible deals on
             must-have products! Explore a wide range of items that combine
             quality, variety, and unbeatable prices, all at your fingertips.
@@ -190,17 +195,24 @@ export default function ProductHeroDisplay({ products }: SearchFieldProps) {
           <Link to="/contact" style={{ textDecoration: "none" }}>
             <Typography
               display={"flex"}
+              justifyContent={"center"}
+              width={"80%"}
               gap={1}
-              variant="h5"
-              color={theme.palette.common.white}
-              paddingTop={10}
+              variant="h4"
+              border={1}
+              padding={1}
+              marginTop={8}
               sx={{
+                color: theme.palette.common.white,
+                borderColor: theme.palette.primary.main,
+                borderRadius: 50,
                 ":hover": {
                   textDecoration: "underline",
+                  textDecorationColor: theme.palette.primary.main,
                 },
               }}
             >
-              Are we missing something
+              Missing something
               <br />
               <Box
                 display="flex"

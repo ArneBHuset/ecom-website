@@ -32,19 +32,26 @@ export default function Checkout() {
         zIndex={-1000}
         textAlign={"center"}
         sx={{
-          background: theme.palette.primary.main,
+          background: theme.palette.secondary.main,
           borderBottomLeftRadius: 100,
           borderBottomRightRadius: 100,
         }}
       >
-        <Typography style={theme.typography.h6} paddingTop={6}>
+        <Typography
+          style={theme.typography.h4}
+          paddingTop={6}
+          sx={{ color: theme.palette.common.white }}
+        >
           {totalItems} items
         </Typography>
-        <Typography style={theme.typography.h6}>
+        <Typography
+          style={theme.typography.h4}
+          sx={{ color: theme.palette.common.white }}
+        >
           Total: {totalPrice}$
         </Typography>
         <ProceedBtn
-          style={theme.typography.h5}
+          style={theme.typography.h4}
           onClick={handleCheckout}
           disabled={totalItems < 1}
           sx={{ marginTop: 2 }}

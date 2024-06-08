@@ -84,10 +84,10 @@ export default function ViewProduct() {
             <Box
               display={"flex"}
               alignItems={"center"}
-              gap={"40%"}
+              justifyContent={"space-between"}
               borderBottom={`1px solid ${theme.palette.common.white}`}
             >
-              <Typography variant="h4">{product.title}</Typography>
+              <Typography variant="h2">{product.title}</Typography>
               <IconButton aria-label="add to cart" onClick={handleAddToCart}>
                 <AddShoppingCartIcon
                   sx={{ color: theme.palette.common.black }}
@@ -126,7 +126,7 @@ export default function ViewProduct() {
               {product.reviews.length > 0 ? (
                 <Typography
                   style={theme.typography.h4}
-                  borderBottom={`1px solid ${theme.palette.common.white}`}
+                  borderBottom={`1px solid ${theme.palette.common.black}`}
                 >
                   Reviews
                 </Typography>
@@ -135,8 +135,8 @@ export default function ViewProduct() {
                 <Box key={review.id} className="review-box">
                   <Typography
                     height={20}
-                    marginY={2}
-                    paragraph
+                    marginY={3}
+                    variant="body1"
                     display={"flex"}
                     alignItems={"center"}
                   >
@@ -149,23 +149,25 @@ export default function ViewProduct() {
                         color: theme.palette.primary.main,
                       }}
                     >
-                      <Star sx={{ fontSize: theme.typography.h1 }} />
+                      <Star sx={{ fontSize: "4rem" }} />
                       <Typography
                         component="span"
                         sx={{
                           position: "absolute",
                           top: "50%",
                           left: "50%",
-                          transform: "translate(-50%, -50%)",
+                          transform: "translate(-50%, -45%)",
                           fontSize: theme.typography.h6,
-                          color: theme.palette.common.white,
+                          color: theme.palette.common.black,
                         }}
                       >
                         {review.rating}
                       </Typography>
                     </Box>
                   </Typography>
-                  <Typography paragraph>{review.description}</Typography>
+                  <Typography paragraph variant="body2">
+                    {`-"${review.description}"`}
+                  </Typography>
                 </Box>
               ))}
             </Box>

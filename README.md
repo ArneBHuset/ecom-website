@@ -17,7 +17,7 @@ State Management: React Redux
 
 ## Demo
 
-Netlify link
+[Netlify link](https://main--flashfinds.netlify.app/)
 
 ## Deployment
 
