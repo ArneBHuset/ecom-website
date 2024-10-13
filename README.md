@@ -2,7 +2,9 @@
 
 eCOM Website Project
 
-eCOM website project for the JS-framework course by Noroff, focusing on React. This project aims to create an e-commerce store where users can browse products, add them to their cart, and check out.
+eCOM website project for the JS-framework course by Noroff, focusing on React. This project aims to create an e-commerce store where users can browse products, add them to their cart, and check out.¨
+
+![image](/Landing page1.png)
 
 ## Authors
 
