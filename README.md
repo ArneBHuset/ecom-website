@@ -1,21 +1,33 @@
 # FlashFinds
 
+![Landing page image](<public/Landing page1.png>)
+
+## Description
+
 eCOM Website Project
 
 eCOM website project for the JS-framework course by Noroff, focusing on React. This project aims to create an e-commerce store where users can browse products, add them to their cart, and check out.¨
 
-![image](/Landing page1.png)
+## Features
 
-## Authors
-
-- Arne Bjelde Hustveit
-- Github: [ArneBHuset](https://github.com/ArneBHuset)
+- Product Browsing: View a list of products on the homepage.
+- Search Functionality: Dynamic look-ahead search bar to filter products.
+- Product Details: Click on any product to view its detailed information.
+- Shopping Cart: Add items to the shopping cart and view them on the cart page.
+- Checkout Process: Proceed to checkout and view a success message upon completion.
+- Responsive Design: Fully responsive layout that works on mobile, tablet, and desktop.
+- Contact Form: A contact page with validated form inputs to send inquiries.
 
 ## Tech Stack
 
-Client: React, MUI (Material-UI)
-Tools: Vite, React Router DOM
-State Management: React Redux
+- React
+- TypeScript
+- Material UI
+- Redux for state management
+- Yup and React Hook Form for form validation
+- Vite
+- ESLint and Prettier for code quality and formatting
+- Visual Studio Code IDE used for development
 
 ## Demo
 
@@ -29,10 +41,6 @@ This project is deployed on Netlify. To deploy your own version of the project, 
   npm run build
   npm run preview
 ```
-
-## Environment Variables
-
-N/A
 
 ## Run Locally
 
@@ -69,15 +77,15 @@ To run tests, run the following command
   npm run test
 ```
 
-## Features
+## Authors
 
-- Product Browsing: View a list of products on the homepage.
-- Search Functionality: Dynamic look-ahead search bar to filter products.
-- Product Details: Click on any product to view its detailed information.
-- Shopping Cart: Add items to the shopping cart and view them on the cart page.
-- Checkout Process: Proceed to checkout and view a success message upon completion.
-- Responsive Design: Fully responsive layout that works on mobile, tablet, and desktop.
-- Contact Form: A contact page with validated form inputs to send inquiries.
+#### Arne Bjelde Hustveit
+
+- Get in touch: arne_hustveit@hotmail.com
+
+- [Linkedin](www.linkedin.com/in/arne-bjelde-hustveit-48ab31276)
+- [Github](https://github.com/ArneBHuset)
+- [Portfolio](https://arnehustveit.myportfolio.com/)
 
 ## Acknowledgements
 
